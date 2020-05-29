@@ -11,16 +11,28 @@ import javafx.scene.layout.Pane;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		try {
-		  FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("vistas/risco.fxml"));
-	    primaryStage.setTitle("Buscar un patrón");
-	    Pane root = fxml.<Pane>load();
-	    
-	    primaryStage.setScene(new Scene(root));
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//		 FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("vistas/NumeroDeJugadores.fxml"));
+//	    primaryStage.setTitle("Buscar un patrón");
+//	    Pane root = fxml.<Pane>load();
+//	    
+//	    primaryStage.setScene(new Scene(root));
+//			primaryStage.show();
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
+	  
+	  //PARA REALIZAR MIENTRAS TIRAR DADOS
+	  try {
+	     FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("vistas/risco.fxml"));
+	      primaryStage.setTitle("Buscar un patrón");
+	      BorderPane root = fxml.<BorderPane>load();
+	      
+	      primaryStage.setScene(new Scene(root));
+	      primaryStage.show();
+	    } catch(Exception e) {
+	      e.printStackTrace();
+	    }
 	}
 	
 	public static void main(String[] args) {
