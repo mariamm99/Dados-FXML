@@ -59,11 +59,11 @@
          <children>
             <Label layoutX="249.0" layoutY="30.0" text="Turno del Jugador: " />
             <Button layoutX="38.0" layoutY="65.0" mnemonicParsing="false" onAction="#tirarDados" text="Tirar dados" />
-            <TextField fx:id="jugador" layoutX="411.0" layoutY="27.0" />
+            <TextField fx:id="jugador" editable="false" layoutX="411.0" layoutY="27.0" />
             <ImageView fx:id="imgDado1" fitHeight="65.0" fitWidth="75.0" layoutX="185.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado2" fitHeight="74.0" fitWidth="90.0" layoutX="352.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado3" fitHeight="62.0" fitWidth="70.0" layoutX="599.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
-            <TableView fx:id="table" layoutX="7.0" layoutY="219.0" onSort="#actualizarTalba" prefHeight="234.0" prefWidth="817.0">
+            <TableView fx:id="table" layoutX="7.0" layoutY="219.0" onSort="#actualizarTabla" prefHeight="234.0" prefWidth="817.0">
               <columns>
                 <TableColumn fx:id="nombre" prefWidth="65.0" text="Jugador" />
                 <TableColumn fx:id="risco" prefWidth="60.0" text="risco" />
@@ -100,6 +100,7 @@
             <RadioButton fx:id="rbDos" layoutX="423.0" layoutY="188.0" mnemonicParsing="false" text="Dos" toggleGroup="$grupo" />
             <RadioButton fx:id="rbAses" layoutX="512.0" layoutY="188.0" mnemonicParsing="false" text="Ases" toggleGroup="$grupo" />
             <Button layoutX="627.0" layoutY="186.0" mnemonicParsing="false" onAction="#meterPuntos" text="Aceptar" />
+            <Button fx:id="btnSiguiente" layoutX="596.0" layoutY="27.0" mnemonicParsing="false" onAction="#botonComenzar" text="Comenzar" />
         
         
          </children>

@@ -30,7 +30,7 @@ import risco.Partida;
 
 public class riscoController implements Initializable {
 
-  Partida partida;
+  static Partida partida;
 
   // risco.fxml //////
   // MenuItem
@@ -43,6 +43,9 @@ public class riscoController implements Initializable {
   // TextField
   @FXML
   private TextField jugador;
+  // Button
+  @FXML
+  private Button btnSiguiente;
   // ImageView
   @FXML
   private ImageView imgDado1;
@@ -156,13 +159,16 @@ public class riscoController implements Initializable {
   @FXML
   private TextField nDadosCambiar;
 
-  int numeroJugadores;
-  Jugador player;
+  boolean primero = true; // Boolean para controlar si es el primer turno del primer jugador
+                          // para variar el texto del botón Comenzar/Siguiente Turno
+  static int numJugadores; // Número de jugadores en la partida
+  int jugadorJugando = 0; // Número de jugador que está jugando en este momento
+  static Jugador player;
 
   // Ventana donde aparecerán los textFields para indicar el nombre de los
   // jugadores
   @FXML
-  void ventanaNombreJugadores(ActionEvent event) throws IOException {
+  public void ventanaNombreJugadores(ActionEvent event) throws IOException {
 
     // Cierro la ventana previa (Número de jugadores)
     Stage stagenJugadores = (Stage) aceptarNJugadores.getScene().getWindow();
@@ -170,7 +176,7 @@ public class riscoController implements Initializable {
 
     List<TextField> textfields = new ArrayList<TextField>();
 
-    int numJugadores = Integer.parseInt(nJugadores.getText());
+    numJugadores = Integer.parseInt(nJugadores.getText());
 
     // DECLARAR PARTIDA TRAS VER EL NUMERO DE JUGADORES.
     partida = new Partida(numJugadores);
@@ -214,9 +220,16 @@ public class riscoController implements Initializable {
       }
       stgnomJugadores.close();
     });
-
   }
 
+  public void botonComenzar(ActionEvent e) {
+    if (primero) {
+      primero = false;
+      btnSiguiente.setText("Siguiente Turno");
+    }
+    siguienteJug();
+  }
+  
   // actualizar tabla
 
   @FXML
@@ -252,7 +265,7 @@ public class riscoController implements Initializable {
 
     total.setCellValueFactory(new PropertyValueFactory<>("total"));
 
-    for (int i = 0; i < numeroJugadores; i++) {
+    for (int i = 0; i < numJugadores; i++) {
 
     }
 
@@ -444,7 +457,7 @@ public class riscoController implements Initializable {
   @FXML
   public void exportar(ActionEvent event) {
     int pos = partida.posicion(player);
-    player.guardaDatos(numeroJugadores, pos);
+    player.guardaDatos(numJugadores, pos);
   }
 
   @FXML
@@ -453,14 +466,24 @@ public class riscoController implements Initializable {
     // player.guardaDatos(nJugadores, pos);
   }
 
+  /**
+   * Método para poner el nombre del jugador en el TextField de la 
+   * ventana principal después de alguna operación, como jugar un turno
+   * por otro jugador o al inicio de la partida.
+   */
+  public void siguienteJug() {
+    if (jugadorJugando >= numJugadores) {
+      jugadorJugando = 1;
+    } else {
+      jugadorJugando++;
+    }
+    String nombrejugador = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando))).getNombre();
+    jugador.setText(nombrejugador);
+  }
+  
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-
-    for (int i = 1; i <= numeroJugadores; i++) {
-
-      player = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(i)));
-      jugador.setText(player.toString());
-    }
+    
   }
 
 }
