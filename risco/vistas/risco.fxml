@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="risco.vistas.riscoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="risco.vistas.riscoController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -53,7 +53,7 @@
       </MenuBar>
    </top>
    <center>
-      <Pane prefHeight="413.0" prefWidth="653.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="444.0" prefWidth="818.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="249.0" layoutY="30.0" text="Turno del Jugador: " />
             <Button layoutX="37.0" layoutY="78.0" mnemonicParsing="false" onAction="#ventanaDados" text="Tirar dados" />
@@ -61,22 +61,23 @@
             <ImageView fx:id="imgDado1" fitHeight="92.0" fitWidth="96.0" layoutX="185.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado2" fitHeight="101.0" fitWidth="118.0" layoutX="352.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado3" fitHeight="86.0" fitWidth="93.0" layoutX="599.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
-            <TableView layoutX="4.0" layoutY="190.0" prefHeight="234.0" prefWidth="771.0">
+            <TableView fx:id="table" layoutX="4.0" layoutY="190.0" onSort="#actualizarTalba" prefHeight="234.0" prefWidth="825.0">
               <columns>
-                <TableColumn prefWidth="70.0" text="Jugador" />
-                <TableColumn prefWidth="55.0" text="risco" />
-                  <TableColumn prefWidth="55.0" text="trece" />
-                  <TableColumn prefWidth="60.0" text="Esc Mayor" />
-                  <TableColumn prefWidth="60.0" text="Esc Menor" />
-                  <TableColumn prefWidth="60.0" text="Esc.  Par" />
-                  <TableColumn prefWidth="60.0" text="Esc. Impar" />
-                  <TableColumn prefWidth="55.0" text="trio" />
-                  <TableColumn prefWidth="50.0" text="Seis" />
-                  <TableColumn prefWidth="50.0" text="Cinco" />
-                  <TableColumn prefWidth="50.0" text="Cuatro" />
-                  <TableColumn prefWidth="50.0" text="Tres" />
-                  <TableColumn prefWidth="50.0" text="Dos" />
-                  <TableColumn prefWidth="50.0" text="Ases" />
+                <TableColumn fx:id="nombre" prefWidth="65.0" text="Jugador" />
+                <TableColumn fx:id="risco" prefWidth="60.0" text="risco" />
+                  <TableColumn fx:id="trece" prefWidth="55.0" text="trece" />
+                  <TableColumn fx:id="escMayor" prefWidth="60.0" text="Esc Mayor" />
+                  <TableColumn fx:id="escMenor" prefWidth="60.0" text="Esc Menor" />
+                  <TableColumn fx:id="escPar" prefWidth="60.0" text="Esc.  Par" />
+                  <TableColumn fx:id="escImpar" prefWidth="60.0" text="Esc. Impar" />
+                  <TableColumn fx:id="trio" prefWidth="55.0" text="trio" />
+                  <TableColumn fx:id="seis" prefWidth="50.0" text="Seis" />
+                  <TableColumn fx:id="cinco" prefWidth="50.0" text="Cinco" />
+                  <TableColumn fx:id="cuatro" prefWidth="50.0" text="Cuatro" />
+                  <TableColumn fx:id="tres" prefWidth="50.0" text="Tres" />
+                  <TableColumn fx:id="dos" prefWidth="50.0" text="Dos" />
+                  <TableColumn fx:id="ases" prefWidth="50.0" text="Ases" />
+                  <TableColumn fx:id="total" prefWidth="50.0" text="Total" />
               </columns>
             </TableView>
         

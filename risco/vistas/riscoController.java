@@ -1,32 +1,29 @@
 package risco.vistas;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
+import gestisimal.Articulo;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import risco.Jugador;
 import risco.Partida;
 
 public class riscoController implements Initializable {
@@ -51,6 +48,56 @@ public class riscoController implements Initializable {
   private ImageView imgDado2;
   @FXML
   private ImageView imgDado3;
+
+  // Tabla
+
+  @FXML
+  private TableView<Partida> table;
+
+  @FXML
+  private TableColumn<Partida, String> nombre;
+
+  @FXML
+  private TableColumn<Partida, Integer> risco;
+
+  @FXML
+  private TableColumn<Partida, Integer> trece;
+
+  @FXML
+  private TableColumn<Partida, Integer> escMayor;
+
+  @FXML
+  private TableColumn<Partida, Integer> escMenor;
+
+  @FXML
+  private TableColumn<Partida, Integer> escPar;
+
+  @FXML
+  private TableColumn<Partida, Integer> escImpar;
+
+  @FXML
+  private TableColumn<Partida, Integer> trio;
+
+  @FXML
+  private TableColumn<Partida, Integer> seis;
+
+  @FXML
+  private TableColumn<Partida, Integer> cinco;
+
+  @FXML
+  private TableColumn<Partida, Integer> cuatro;
+
+  @FXML
+  private TableColumn<Partida, Integer> tres;
+
+  @FXML
+  private TableColumn<Partida, Integer> dos;
+
+  @FXML
+  private TableColumn<Partida, Integer> ases;
+
+  @FXML
+  private TableColumn<Partida, Integer> total;
 
   // NumeroDeJugadores.fxml //////
   // TextField
@@ -118,6 +165,53 @@ public class riscoController implements Initializable {
 
   }
 
+  @FXML
+  public void actualizarTalba(ActionEvent event) {
+
+    nombre.setCellValueFactory(new PropertyValueFactory<>("nJugadores"));
+
+    risco.setCellValueFactory(new PropertyValueFactory<>("risco"));
+
+    trece.setCellValueFactory(new PropertyValueFactory<>("trece"));
+
+    escMayor.setCellValueFactory(new PropertyValueFactory<>("escMayor"));
+
+    escMenor.setCellValueFactory(new PropertyValueFactory<>("escMenor"));
+
+    escPar.setCellValueFactory(new PropertyValueFactory<>("escPar"));
+
+    escImpar.setCellValueFactory(new PropertyValueFactory<>("escImpar"));
+
+   trio.setCellValueFactory(new PropertyValueFactory<>("trio"));
+
+   seis.setCellValueFactory(new PropertyValueFactory<>("seis"));
+
+    cinco.setCellValueFactory(new PropertyValueFactory<>("cinco"));
+
+    cuatro.setCellValueFactory(new PropertyValueFactory<>("cuatro"));
+
+    tres.setCellValueFactory(new PropertyValueFactory<>("tres"));
+
+    dos.setCellValueFactory(new PropertyValueFactory<>("dos"));
+
+   ases.setCellValueFactory(new PropertyValueFactory<>("ases"));
+
+    total.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+    int numeroJugadores= Integer.parseInt(nJugadores.getText());
+    for (int i = 0; i < numeroJugadores ; i++) {
+     
+    }
+  
+
+  }
+  
+  @FXML
+  public void meterPuntos() {
+    
+    
+  }
+
   // Event Listener on Button.onAction
   @FXML
   public void ventanaDados(ActionEvent event) throws IOException {
@@ -137,7 +231,7 @@ public class riscoController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
+
   }
 
 }

@@ -5,11 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="287.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="risco.vistas.riscoController">
    <children>
-      <Label layoutX="67.0" layoutY="49.0" prefHeight="34.0" prefWidth="167.0" text="Cuantos dados quieres cambiar" />
-      <Button layoutX="122.0" layoutY="168.0" mnemonicParsing="false" onAction="#cambiarDados" text="Button" />
-      <TextField fx:id="nDadosCambiar" layoutX="78.0" layoutY="102.0" />
+      <Label layoutX="60.0" layoutY="50.0" prefHeight="34.0" prefWidth="167.0" text="Cuantos dados quieres cambiar" />
+      <Button layoutX="115.0" layoutY="167.0" mnemonicParsing="false" onAction="#cambiarDados" text="aceptar" />
+      <TextField fx:id="nDadosCambiar" layoutX="71.0" layoutY="104.0" />
    </children>
 </Pane>

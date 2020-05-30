@@ -2,10 +2,14 @@ package risco;
 	
 import java.io.IOException;
 
+import gestisimal.Articulo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -40,7 +44,8 @@ public class Main extends Application {
 	     FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("vistas/risco.fxml"));
 	      primaryStage.setTitle("Risco");
 	      BorderPane root = fxml.<BorderPane>load();
-	      
+	    
+	   
 	      primaryStage.setScene(new Scene(root));
 	      pedirJugadores();
 	      primaryStage.show();
