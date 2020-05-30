@@ -23,7 +23,7 @@ public class Partida {
   private int ronda;
   private int nJugadores;
 
-  ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+  public ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 
   public Partida(int nJugadores) {
     this.nJugadores = nJugadores;

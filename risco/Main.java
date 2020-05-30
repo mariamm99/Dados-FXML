@@ -2,7 +2,6 @@ package risco;
 	
 import java.io.IOException;
 
-import gestisimal.Articulo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;

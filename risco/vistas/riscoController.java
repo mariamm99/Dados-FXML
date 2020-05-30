@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import gestisimal.Articulo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import risco.Jugador;
@@ -182,9 +182,9 @@ public class riscoController implements Initializable {
 
     escImpar.setCellValueFactory(new PropertyValueFactory<>("escImpar"));
 
-   trio.setCellValueFactory(new PropertyValueFactory<>("trio"));
+    trio.setCellValueFactory(new PropertyValueFactory<>("trio"));
 
-   seis.setCellValueFactory(new PropertyValueFactory<>("seis"));
+    seis.setCellValueFactory(new PropertyValueFactory<>("seis"));
 
     cinco.setCellValueFactory(new PropertyValueFactory<>("cinco"));
 
@@ -194,22 +194,20 @@ public class riscoController implements Initializable {
 
     dos.setCellValueFactory(new PropertyValueFactory<>("dos"));
 
-   ases.setCellValueFactory(new PropertyValueFactory<>("ases"));
+    ases.setCellValueFactory(new PropertyValueFactory<>("ases"));
 
     total.setCellValueFactory(new PropertyValueFactory<>("total"));
 
-    int numeroJugadores= Integer.parseInt(nJugadores.getText());
-    for (int i = 0; i < numeroJugadores ; i++) {
-     
+    int numeroJugadores = Integer.parseInt(nJugadores.getText());
+    for (int i = 0; i < numeroJugadores; i++) {
+
     }
-  
 
   }
-  
+
   @FXML
   public void meterPuntos() {
-    
-    
+
   }
 
   // Event Listener on Button.onAction
@@ -227,6 +225,37 @@ public class riscoController implements Initializable {
   @FXML
   void cambiarDados(ActionEvent event) {
 
+  }
+
+  @FXML
+  void tirarDados(ActionEvent event) {
+    Jugador player = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(1)));
+    System.out.println(partida.tirarDados(player));
+  }
+
+  private void cerrarPantalla() {
+    // Stage stage = (Stage) boton.getScene().getWindow();
+    // stage.close();
+  }
+
+  @FXML
+  void salir(ActionEvent event) {
+    System.exit(0);
+  }
+
+  @FXML
+  void help(ActionEvent event) {
+    Stage stageListar = new Stage();
+
+    BorderPane root = new BorderPane();
+
+    root.setCenter(new Label("Risco es un juego de dados en el cual gana el que mas puntos tiene. \n"
+        + "El numero de jugadores puede ser el que quieras, y siempre habrá trece rondas para cada jugador. \n"
+        + "según tus dados debes indicar si has echo risco, trece, seis, cinco. \n"
+        + "Mostramos una tabla de las puntuaciones maximas de cada opción, debes rellanarlas todas\n"
+        + "y no puedes repetir la opcion"));
+    stageListar.setScene(new Scene(root, 400, 400));
+    stageListar.show();
   }
 
   @Override

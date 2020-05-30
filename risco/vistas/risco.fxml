@@ -31,7 +31,7 @@
                   </MenuItem>
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" onAction="#help" text="Help">
             <items>
               <MenuItem fx:id="ayuda" mnemonicParsing="false" text="Help">
                      <accelerator>
@@ -40,7 +40,7 @@
                   </MenuItem>
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Exit">
+          <Menu mnemonicParsing="false" onAction="#salir" text="Exit">
             <items>
               <MenuItem mnemonicParsing="false" text="Exit">
                      <accelerator>
@@ -56,7 +56,7 @@
       <Pane prefHeight="444.0" prefWidth="818.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="249.0" layoutY="30.0" text="Turno del Jugador: " />
-            <Button layoutX="37.0" layoutY="78.0" mnemonicParsing="false" onAction="#ventanaDados" text="Tirar dados" />
+            <Button layoutX="37.0" layoutY="78.0" mnemonicParsing="false" onAction="#tirarDados" text="Tirar dados" />
             <TextField fx:id="jugador" layoutX="411.0" layoutY="27.0" />
             <ImageView fx:id="imgDado1" fitHeight="92.0" fitWidth="96.0" layoutX="185.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado2" fitHeight="101.0" fitWidth="118.0" layoutX="352.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
