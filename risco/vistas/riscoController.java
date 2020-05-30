@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,10 +15,12 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,9 +43,22 @@ public class riscoController implements Initializable {
   private MenuItem importar;
   @FXML
   private MenuItem ayuda;
+  
+  @FXML
+  private Menu mOpciones;
+
+  @FXML
+  private Menu mHelp;
+
+  @FXML
+  private Menu mExit;
+  
   // TextField
   @FXML
   private TextField jugador;
+  //TextArea de abajo
+  @FXML
+  private TextArea resultado;
   // Button
   @FXML
   private Button btnSiguiente;
@@ -281,122 +297,123 @@ public class riscoController implements Initializable {
     if (rbRisco.isSelected()) {
       n = Partida.Risco(player);
       if (n == 0) {
-        System.out.println("Ha obtenido 0 puntos");
+        resultado.setText("Ha obtenido 0 puntos");
       } else if (n == 1) {
-        System.out.println("Has completado la casilla Risco: 50 puntos");
+        resultado.setText("Has completado la casilla Risco: 50 puntos");
       } else {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       }
     } else if (rbTrece.isSelected()) {
       n = Partida.Trece(player);
       if (n == 0) {
-        System.out.println("Ha obtenido 0 puntos");
+        resultado.setText("Ha obtenido 0 puntos");
       } else if (n == 1) {
-        System.out.println("Casilla Trece completada: 26 ptos");
+        resultado.setText("Casilla Trece completada: 26 ptos");
       } else {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       }
     } else if (rbEscMayor.isSelected()) {
       n = Partida.EscaleraMayor(player);
       if (n == 0) {
-        System.out.println("Ha obtenido 0 puntos");
+        resultado.setText("Ha obtenido 0 puntos");
       } else if (n == 1) {
-        System.out.println("Esta combinación es una Escalera Mayor, 20 ptos");
+        resultado.setText("Esta combinación es una Escalera Mayor, 20 ptos");
       } else {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       }
     } else if (rbEscMenor.isSelected()) {
       n = Partida.EscaleraMenor(player);
       if (n == 0) {
-        System.out.println("Ha obtenido 0 puntos");
+        resultado.setText("Ha obtenido 0 puntos");
       } else if (n == 1) {
-        System.out.println("Esta combinación es una Escalera Menor, 20 ptos");
+        resultado.setText("Esta combinación es una Escalera Menor, 20 ptos");
       } else {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       }
     } else if (rbEscPar.isSelected()) {
       n = Partida.EscaleraPar(player);
       if (n == 0) {
-        System.out.println("Ha obtenido 0 puntos");
+        resultado.setText("Ha obtenido 0 puntos");
       } else if (n == 1) {
-        System.out.println("Esta combinación es una Escalera Par, 20 ptos");
+        resultado.setText("Esta combinación es una Escalera Par, 20 ptos");
       } else {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       }
     } else if (rbEscImpar.isSelected()) {
       n = Partida.EscaleraImpar(player);
+
+
       if (n == 0) {
-        System.out.println("Ha obtenido 0 puntos");
+        resultado.setText("Ha obtenido 0 puntos");
       } else if (n == 1) {
-        System.out.println("Esta combinación es una Escalera Impar, 20 ptos");
+        resultado.setText("Esta combinación es una Escalera Impar, 20 ptos");
       } else {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       }
     } else if (rbTrio.isSelected()) {
       n = Partida.Trio(player);
       if (n == 0) {
-        System.out.println("Ha obtenido 0 puntos");
+        resultado.setText("Ha obtenido 0 puntos");
       } else if (n == 1) {
-        System.out.println("Casilla Trío completada, 25 ptos");
+        resultado.setText("Casilla Trío completada, 25 ptos");
       } else {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       }
     } else if (rbSeis.isSelected()) {
       n = Partida.numero(player, 6);
       if (n == 50) {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       } else {
-        System.out.println("Casilla seises completada con " + n);
+        resultado.setText("Casilla seises completada con " + n);
       }
     } else if (rbCinco.isSelected()) {
       n = Partida.numero(player, 5);
       if (n == 50) {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       } else {
-        System.out.println("Casilla cincos completada con " + n);
+        resultado.setText("Casilla cincos completada con " + n);
 
       }
     } else if (rbCuatro.isSelected()) {
       n = Partida.numero(player, 4);
       if (n == 50) {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       } else {
-        System.out.println("Casilla cuatros completada con " + n);
-
+        resultado.setText("Casilla cuatros completada con " + n);
       }
     } else if (rbTres.isSelected()) {
       n = Partida.numero(player, 3);
       if (n == 50) {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       } else {
-        System.out.println("Casilla treses completada con " + n);
+        resultado.setText("Casilla treses completada con " + n);
       }
     } else if (rbDos.isSelected()) {
       n = Partida.numero(player, 2);
       if (n == 50) {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       } else {
-        System.out.println("Casilla doses completada con " + n);
+        resultado.setText("Casilla doses completada con " + n);
       }
     } else if (rbAses.isSelected()) {
       n = Partida.numero(player, 1);
       if (n == 50) {
-        System.out.println("Casilla ocupada indique una casilla vacia");
+        resultado.setText("Casilla ocupada indique una casilla vacia");
         casillaOcupada = true;
       } else {
-        System.out.println("Casilla Ases completada con " + n);
+        resultado.setText("Casilla Ases completada con " + n);
       }
     }
 
@@ -477,8 +494,30 @@ public class riscoController implements Initializable {
     } else {
       jugadorJugando++;
     }
+    player=partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando)));
     String nombrejugador = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando))).getNombre();
     jugador.setText(nombrejugador);
+  }
+  
+  
+  @FXML
+  void menuTexto(Event event) {
+    String id = ((Menu) event.getSource()).getId();
+
+    if (id.equals(mExit.getId())) {
+      resultado.setText("Cierra y termina el programa");
+
+    } else if (id.equals(mOpciones.getId())) {
+      resultado.setText("Tiene la opción de exportar los datos de la partida y guardarlas en un archivo e importar datos de otras partidas");
+
+    } else if (id.equals(mHelp.getId())) {
+      resultado.setText("Muestra como es el juego");
+    }
+  }
+  
+  @FXML
+  void limpiarResultado(Event event) {
+    resultado.setText("");
   }
   
   @Override

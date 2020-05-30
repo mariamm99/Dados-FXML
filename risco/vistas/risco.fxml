@@ -8,6 +8,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
@@ -15,11 +16,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="risco.vistas.riscoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="risco.vistas.riscoController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Opciones">
+          <Menu fx:id="mOpciones" mnemonicParsing="false" onHidden="#limpiarResultado" onShown="#menuTexto" text="Opciones">
             <items>
               <MenuItem fx:id="exportar" mnemonicParsing="false" text="Exportar">
                      <accelerator>
@@ -33,16 +34,16 @@
                   </MenuItem>
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" onAction="#help" text="Help">
+          <Menu fx:id="mHelp" mnemonicParsing="false" onAction="#help" onHidden="#limpiarResultado" onShown="#menuTexto" text="Help">
             <items>
-              <MenuItem fx:id="ayuda" mnemonicParsing="false" text="Help">
+              <MenuItem fx:id="ayuda" mnemonicParsing="false" onAction="#help" text="Help">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" onAction="#salir" text="Exit">
+          <Menu fx:id="mExit" mnemonicParsing="false" onAction="#salir" onHidden="#limpiarResultado" onShown="#menuTexto" text="Exit">
             <items>
               <MenuItem mnemonicParsing="false" text="Exit">
                      <accelerator>
@@ -63,7 +64,7 @@
             <ImageView fx:id="imgDado1" fitHeight="65.0" fitWidth="75.0" layoutX="185.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado2" fitHeight="74.0" fitWidth="90.0" layoutX="352.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado3" fitHeight="62.0" fitWidth="70.0" layoutX="599.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
-            <TableView fx:id="table" layoutX="7.0" layoutY="219.0" onSort="#actualizarTabla" prefHeight="234.0" prefWidth="817.0">
+            <TableView fx:id="table" layoutX="7.0" layoutY="219.0" onSort="#actualizarTabla" prefHeight="306.0" prefWidth="817.0">
               <columns>
                 <TableColumn fx:id="nombre" prefWidth="65.0" text="Jugador" />
                 <TableColumn fx:id="risco" prefWidth="60.0" text="risco" />
@@ -106,4 +107,7 @@
          </children>
       </Pane>
    </left>
+   <bottom>
+      <TextArea fx:id="resultado" prefHeight="55.0" prefWidth="846.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
