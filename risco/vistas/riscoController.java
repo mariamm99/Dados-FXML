@@ -202,6 +202,8 @@ public class riscoController implements Initializable {
     for (int i = 0; i < numeroJugadores; i++) {
 
     }
+    
+    table.edit(1, total);
 
   }
 
@@ -230,7 +232,8 @@ public class riscoController implements Initializable {
   @FXML
   void tirarDados(ActionEvent event) {
     Jugador player = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(1)));
-    System.out.println(partida.tirarDados(player));
+    System.out.println(player);
+    System.out.println(Partida.tirarDados(player));
   }
 
   private void cerrarPantalla() {
