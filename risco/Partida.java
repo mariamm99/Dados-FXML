@@ -394,7 +394,7 @@ public class Partida {
    * @param player
    * @return posición del jugador
    */
-  int posicion(Jugador player) {
+  public int posicion(Jugador player) {
     int pos = 1;
     int puntos = player.p.get(13);
 

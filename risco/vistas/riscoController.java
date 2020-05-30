@@ -15,9 +15,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -99,6 +101,49 @@ public class riscoController implements Initializable {
   @FXML
   private TableColumn<Partida, Integer> total;
 
+  // RADIO BUTTON
+  @FXML
+  private RadioButton rbRisco;
+
+  @FXML
+  private ToggleGroup grupo;
+
+  @FXML
+  private RadioButton rbTrece;
+
+  @FXML
+  private RadioButton rbEscMayor;
+
+  @FXML
+  private RadioButton rbEscMenor;
+
+  @FXML
+  private RadioButton rbEscPar;
+
+  @FXML
+  private RadioButton rbEscImpar;
+
+  @FXML
+  private RadioButton rbTrio;
+
+  @FXML
+  private RadioButton rbSeis;
+
+  @FXML
+  private RadioButton rbCinco;
+
+  @FXML
+  private RadioButton rbCuatro;
+
+  @FXML
+  private RadioButton rbTres;
+
+  @FXML
+  private RadioButton rbDos;
+
+  @FXML
+  private RadioButton rbAses;
+
   // NumeroDeJugadores.fxml //////
   // TextField
   @FXML
@@ -111,6 +156,11 @@ public class riscoController implements Initializable {
   @FXML
   private TextField nDadosCambiar;
 
+  int numeroJugadores;
+  Jugador player;
+
+  // Ventana donde aparecerán los textFields para indicar el nombre de los
+  // jugadores
   @FXML
   void ventanaNombreJugadores(ActionEvent event) throws IOException {
 
@@ -135,6 +185,7 @@ public class riscoController implements Initializable {
       textfields.add(textF);
     }
 
+    // creamos el pane
     Pane panel = new Pane();
     panel.getChildren().add(new Label("Introduce el nombre de los jugadores: "));
 
@@ -154,6 +205,7 @@ public class riscoController implements Initializable {
     stgnomJugadores.setScene(new Scene(panel));
     stgnomJugadores.show();
 
+    // creamos los jugadores cuando tenemos los nombres
     btnAc.setOnAction(actionEvent -> {
       int tmpCrearJugadores = 0;
       for (TextField tf : textfields) {
@@ -165,8 +217,10 @@ public class riscoController implements Initializable {
 
   }
 
+  // actualizar tabla
+
   @FXML
-  public void actualizarTalba(ActionEvent event) {
+  public void actualizarTabla(ActionEvent event) {
 
     nombre.setCellValueFactory(new PropertyValueFactory<>("nJugadores"));
 
@@ -198,21 +252,144 @@ public class riscoController implements Initializable {
 
     total.setCellValueFactory(new PropertyValueFactory<>("total"));
 
-    int numeroJugadores = Integer.parseInt(nJugadores.getText());
     for (int i = 0; i < numeroJugadores; i++) {
 
     }
-    
-    table.edit(1, total);
+
+//    table.edit(1, total);
 
   }
 
   @FXML
   public void meterPuntos() {
+    int n;
+    boolean casillaOcupada = false;
+
+    if (rbRisco.isSelected()) {
+      n = Partida.Risco(player);
+      if (n == 0) {
+        System.out.println("Ha obtenido 0 puntos");
+      } else if (n == 1) {
+        System.out.println("Has completado la casilla Risco: 50 puntos");
+      } else {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      }
+    } else if (rbTrece.isSelected()) {
+      n = Partida.Trece(player);
+      if (n == 0) {
+        System.out.println("Ha obtenido 0 puntos");
+      } else if (n == 1) {
+        System.out.println("Casilla Trece completada: 26 ptos");
+      } else {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      }
+    } else if (rbEscMayor.isSelected()) {
+      n = Partida.EscaleraMayor(player);
+      if (n == 0) {
+        System.out.println("Ha obtenido 0 puntos");
+      } else if (n == 1) {
+        System.out.println("Esta combinación es una Escalera Mayor, 20 ptos");
+      } else {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      }
+    } else if (rbEscMenor.isSelected()) {
+      n = Partida.EscaleraMenor(player);
+      if (n == 0) {
+        System.out.println("Ha obtenido 0 puntos");
+      } else if (n == 1) {
+        System.out.println("Esta combinación es una Escalera Menor, 20 ptos");
+      } else {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      }
+    } else if (rbEscPar.isSelected()) {
+      n = Partida.EscaleraPar(player);
+      if (n == 0) {
+        System.out.println("Ha obtenido 0 puntos");
+      } else if (n == 1) {
+        System.out.println("Esta combinación es una Escalera Par, 20 ptos");
+      } else {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      }
+    } else if (rbEscImpar.isSelected()) {
+      n = Partida.EscaleraImpar(player);
+      if (n == 0) {
+        System.out.println("Ha obtenido 0 puntos");
+      } else if (n == 1) {
+        System.out.println("Esta combinación es una Escalera Impar, 20 ptos");
+      } else {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      }
+    } else if (rbTrio.isSelected()) {
+      n = Partida.Trio(player);
+      if (n == 0) {
+        System.out.println("Ha obtenido 0 puntos");
+      } else if (n == 1) {
+        System.out.println("Casilla Trío completada, 25 ptos");
+      } else {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      }
+    } else if (rbSeis.isSelected()) {
+      n = Partida.numero(player, 6);
+      if (n == 50) {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      } else {
+        System.out.println("Casilla seises completada con " + n);
+      }
+    } else if (rbCinco.isSelected()) {
+      n = Partida.numero(player, 5);
+      if (n == 50) {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      } else {
+        System.out.println("Casilla cincos completada con " + n);
+
+      }
+    } else if (rbCuatro.isSelected()) {
+      n = Partida.numero(player, 4);
+      if (n == 50) {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      } else {
+        System.out.println("Casilla cuatros completada con " + n);
+
+      }
+    } else if (rbTres.isSelected()) {
+      n = Partida.numero(player, 3);
+      if (n == 50) {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      } else {
+        System.out.println("Casilla treses completada con " + n);
+      }
+    } else if (rbDos.isSelected()) {
+      n = Partida.numero(player, 2);
+      if (n == 50) {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      } else {
+        System.out.println("Casilla doses completada con " + n);
+      }
+    } else if (rbAses.isSelected()) {
+      n = Partida.numero(player, 1);
+      if (n == 50) {
+        System.out.println("Casilla ocupada indique una casilla vacia");
+        casillaOcupada = true;
+      } else {
+        System.out.println("Casilla Ases completada con " + n);
+      }
+    }
 
   }
 
-  // Event Listener on Button.onAction
+  // ventana donde se mostrará el resultado de los dados
   @FXML
   public void ventanaDados(ActionEvent event) throws IOException {
     Stage stage = new Stage();
@@ -229,18 +406,21 @@ public class riscoController implements Initializable {
 
   }
 
+  // primeros dados que se lanzan
   @FXML
   void tirarDados(ActionEvent event) {
-    Jugador player = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(1)));
     System.out.println(player);
     System.out.println(Partida.tirarDados(player));
   }
 
-  private void cerrarPantalla() {
+  // para cerrar la pantalla
+  @FXML
+  private void cerrarPantalla(ActionEvent event) {
     // Stage stage = (Stage) boton.getScene().getWindow();
     // stage.close();
   }
 
+  // salir
   @FXML
   void salir(ActionEvent event) {
     System.exit(0);
@@ -261,9 +441,26 @@ public class riscoController implements Initializable {
     stageListar.show();
   }
 
+  @FXML
+  public void exportar(ActionEvent event) {
+    int pos = partida.posicion(player);
+    player.guardaDatos(numeroJugadores, pos);
+  }
+
+  @FXML
+  public void importa(ActionEvent event) {
+    // int pos = partida.posicion(player);
+    // player.guardaDatos(nJugadores, pos);
+  }
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
+    for (int i = 1; i <= numeroJugadores; i++) {
+
+      player = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(i)));
+      jugador.setText(player.toString());
+    }
   }
 
 }
