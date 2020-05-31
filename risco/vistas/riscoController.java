@@ -69,7 +69,11 @@ public class riscoController implements Initializable {
   private Button tirarD;
 
   @FXML
-  private Button cambiarD;
+  private Button cambiarD1;
+  @FXML
+  private Button cambiarD2;
+  @FXML
+  private Button cambiarD3;
 
   // ImageView
   @FXML
@@ -249,7 +253,9 @@ public class riscoController implements Initializable {
 
   public void botonComenzar(ActionEvent e) {
     tirarD.setDisable(false);
-    cambiarD.setDisable(true);
+    cambiarD1.setDisable(true);
+    cambiarD2.setDisable(true);
+    cambiarD3.setDisable(true);
     if (primero) {
       primero = false;
       btnSiguiente.setText("Siguiente Turno");
@@ -429,7 +435,10 @@ public class riscoController implements Initializable {
 
   }
 
-  // ventana donde se mostrará el resultado de los dados
+  /* 
+   * Esto si no me equivoco no lo usamos, ¿no?
+   * 
+   * // ventana donde se mostrará el resultado de los dados
   @FXML
   public void ventanaDados(ActionEvent event) throws IOException {
     Stage stage = new Stage();
@@ -439,52 +448,69 @@ public class riscoController implements Initializable {
     Pane root = fxml.<Pane>load();
     stage.setScene(new Scene(root));
     stage.showAndWait();
-  }
+  } */
 
   @FXML
-  void cambiarDados(ActionEvent event) {
+  void cambiarDado1(ActionEvent event) {
+    tirarUnDado(1);
+    cambiarD1.setDisable(true);
+  }
+  
+  @FXML
+  void cambiarDado2(ActionEvent event) {
+    tirarUnDado(2);
+    cambiarD2.setDisable(true);
+  }
+  
+  @FXML
+  void cambiarDado3(ActionEvent event) {
+    tirarUnDado(3);
+    cambiarD3.setDisable(true);
+  }
+  
+  void tirarUnDado(int nDado) {
+    int d;
+    ImageView img;
+    Image file = null;
+    
+    if (nDado == 1) {
+      d = Partida.tirarDados(player).getD1();
+      img = imgDado1;
+    } else if (nDado == 2) {
+      d = Partida.tirarDados(player).getD2();
+      img = imgDado2;
+    } else {
+      d = Partida.tirarDados(player).getD3();
+      img = imgDado3;
+    }
 
+    if (d == 1) {
+      file = new Image(".\\risco\\dados\\Dado1.png");
+    } else if (d == 2) {
+      file = new Image(".\\risco\\dados\\Dado2.png");
+    } else if (d == 3) {
+      file = new Image(".\\risco\\dados\\Dado3.png");
+    } else if (d == 4) {
+      file = new Image(".\\risco\\dados\\Dado4.png");
+    } else if (d == 5) {
+      file = new Image(".\\risco\\dados\\Dado5.png");
+    } else if (d == 6) {
+      file = new Image(".\\risco\\dados\\Dado6.png");
+    }
+    img.setImage(file);
+    
   }
 
   // primeros dados que se lanzan
   @FXML
   void tirarDados(ActionEvent event) {
-
-    int d;
-    ImageView img;
-    Image file = null;
-    for (int i = 0; i < 3; i++) {
-
-      if (i == 0) {
-        d = Partida.tirarDados(player).getD1();
-        img = imgDado1;
-      } else if (i == 1) {
-        d = Partida.tirarDados(player).getD2();
-        img = imgDado2;
-      } else {
-        d = Partida.tirarDados(player).getD3();
-        img = imgDado3;
-      }
-
-      if (d == 1) {
-        file = new Image(".\\risco\\dados\\Dado1.png");
-      } else if (d == 2) {
-        file = new Image(".\\risco\\dados\\Dado2.png");
-      } else if (d == 3) {
-        file = new Image(".\\risco\\dados\\Dado3.png");
-      } else if (d == 4) {
-        file = new Image(".\\risco\\dados\\Dado4.png");
-      } else if (d == 5) {
-        file = new Image(".\\risco\\dados\\Dado5.png");
-      } else if (d == 6) {
-        file = new Image(".\\risco\\dados\\Dado6.png");
-      }
-      img.setImage(file);
-      
-      cambiarD.setDisable(false);
-      tirarD.setDisable(true);
-
+    for (int i = 1; i <= 3; i++) {
+      tirarUnDado(i);
     }
+    cambiarD1.setDisable(false);
+    cambiarD2.setDisable(false);
+    cambiarD3.setDisable(false);
+    tirarD.setDisable(true);
   }
 
   // para cerrar la pantalla

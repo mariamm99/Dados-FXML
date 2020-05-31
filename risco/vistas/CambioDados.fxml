@@ -1,30 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="249.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="risco.vistas.riscoController">
    <children>
-      <ImageView fitHeight="96.0" fitWidth="102.0" layoutX="57.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/C:/Users/maria/eclipse-workspace/DadosConFXML/src/risco/Dados/Dado2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="96.0" fitWidth="110.0" layoutX="252.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/C:/Users/maria/eclipse-workspace/DadosConFXML/src/risco/Dados/Dado6.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="127.0" fitWidth="88.0" layoutX="454.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/C:/Users/maria/eclipse-workspace/DadosConFXML/src/risco/Dados/Dado4.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="57.0" layoutY="164.0" mnemonicParsing="false" text="Cambiar Dado" />
-      <Button layoutX="252.0" layoutY="164.0" mnemonicParsing="false" text="Cambiar Dado" />
-      <Button layoutX="445.0" layoutY="164.0" mnemonicParsing="false" text="Cambiar Dado" />
+      <ImageView fx:id="imgDado1" fitHeight="100.0" fitWidth="100.0" layoutX="57.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgDado2" fitHeight="100.0" fitWidth="100.0" layoutX="252.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgDado3" fitHeight="100.0" fitWidth="100.0" layoutX="443.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="57.0" layoutY="177.0" mnemonicParsing="false" text="Cambiar Dado" />
+      <Button layoutX="256.0" layoutY="177.0" mnemonicParsing="false" text="Cambiar Dado" />
+      <Button layoutX="447.0" layoutY="177.0" mnemonicParsing="false" text="Cambiar Dado" />
    </children>
 </Pane>

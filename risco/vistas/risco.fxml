@@ -58,12 +58,12 @@
    <left>
       <Pane prefHeight="467.0" prefWidth="847.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="249.0" layoutY="30.0" text="Turno del Jugador: " />
+            <Label layoutX="250.0" layoutY="19.0" text="Turno del Jugador: " />
             <Button fx:id="tirarD" layoutX="37.0" layoutY="78.0" mnemonicParsing="false" onAction="#tirarDados" text="Tirar dados" />
-            <TextField fx:id="jugador" editable="false" layoutX="411.0" layoutY="27.0" />
-            <ImageView fx:id="imgDado1" fitHeight="65.0" fitWidth="75.0" layoutX="185.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgDado2" fitHeight="74.0" fitWidth="90.0" layoutX="313.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imgDado3" fitHeight="62.0" fitWidth="70.0" layoutX="477.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="jugador" editable="false" layoutX="406.0" layoutY="15.0" />
+            <ImageView fx:id="imgDado1" fitHeight="70.0" fitWidth="70.0" layoutX="185.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgDado2" fitHeight="70.0" fitWidth="70.0" layoutX="323.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgDado3" fitHeight="70.0" fitWidth="70.0" layoutX="452.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
             <TableView fx:id="table" layoutX="7.0" layoutY="219.0" onSort="#actualizarTabla" prefHeight="306.0" prefWidth="817.0">
               <columns>
                 <TableColumn fx:id="nombre" prefWidth="65.0" text="Jugador" />
@@ -101,8 +101,10 @@
             <RadioButton fx:id="rbDos" layoutX="423.0" layoutY="188.0" mnemonicParsing="false" text="Dos" toggleGroup="$grupo" />
             <RadioButton fx:id="rbAses" layoutX="512.0" layoutY="188.0" mnemonicParsing="false" text="Ases" toggleGroup="$grupo" />
             <Button layoutX="627.0" layoutY="186.0" mnemonicParsing="false" onAction="#meterPuntos" text="Aceptar" />
-            <Button fx:id="btnSiguiente" layoutX="596.0" layoutY="27.0" mnemonicParsing="false" onAction="#botonComenzar" text="Comenzar" />
-            <Button fx:id="cambiarD" disable="true" layoutX="637.0" layoutY="78.0" mnemonicParsing="false" text="cambiar dados" />
+            <Button fx:id="btnSiguiente" layoutX="592.0" layoutY="15.0" mnemonicParsing="false" onAction="#botonComenzar" text="Comenzar" />
+            <Button fx:id="cambiarD1" disable="true" layoutX="172.0" layoutY="122.0" mnemonicParsing="false" onAction="#cambiarDado1" text="Cambiar dado 1" />
+            <Button fx:id="cambiarD2" disable="true" layoutX="308.0" layoutY="122.0" mnemonicParsing="false" onAction="#cambiarDado2" text="Cambiar dado 2" />
+            <Button fx:id="cambiarD3" disable="true" layoutX="437.0" layoutY="122.0" mnemonicParsing="false" onAction="#cambiarDado3" text="Cambiar dado 3" />
         
         
          </children>
