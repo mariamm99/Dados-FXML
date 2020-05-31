@@ -18,9 +18,9 @@ import java.util.Date;
  *
  */
 public class Jugador {
-  private String nombre;
+  public String nombre;
   private int nj; // Número de Jugador, como si fuera un código
-  ArrayList<Integer> p = new ArrayList<Integer>(); // ArrayList de puntuaciones
+  public ArrayList<Integer> p = new ArrayList<Integer>(); // ArrayList de puntuaciones
   Dados dadosJugador; 
   
   /**
@@ -85,6 +85,10 @@ public class Jugador {
    */
   public void setDadosJugador(Dados dadosJugador) {
     this.dadosJugador = dadosJugador;
+  }
+  
+  public ArrayList<Integer> getP() {
+    return p;
   }
 
   

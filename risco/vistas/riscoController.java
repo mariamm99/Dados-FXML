@@ -1,16 +1,15 @@
 package risco.vistas;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -64,6 +63,9 @@ public class riscoController implements Initializable {
   // Button
   @FXML
   private Button btnSiguiente;
+  
+  @FXML
+  private Button btnAceptar;
 
   @FXML
   private Button tirarD;
@@ -86,53 +88,53 @@ public class riscoController implements Initializable {
   // Tabla
 
   @FXML
-  private TableView<Partida> table;
+  private TableView<Jugador> table;
 
   @FXML
-  private TableColumn<Partida, String> nombre;
+  private TableColumn<Jugador, String> nombre;
 
   @FXML
-  private TableColumn<Partida, Integer> risco;
+  private TableColumn<Jugador, Integer> risco;
 
   @FXML
-  private TableColumn<Partida, Integer> trece;
+  private TableColumn<Jugador, Integer> trece;
 
   @FXML
-  private TableColumn<Partida, Integer> escMayor;
+  private TableColumn<Jugador, Integer> escMayor;
 
   @FXML
-  private TableColumn<Partida, Integer> escMenor;
+  private TableColumn<Jugador, Integer> escMenor;
 
   @FXML
-  private TableColumn<Partida, Integer> escPar;
+  private TableColumn<Jugador, Integer> escPar;
 
   @FXML
-  private TableColumn<Partida, Integer> escImpar;
+  private TableColumn<Jugador, Integer> escImpar;
 
   @FXML
-  private TableColumn<Partida, Integer> trio;
+  private TableColumn<Jugador, Integer> trio;
 
   @FXML
-  private TableColumn<Partida, Integer> seis;
+  private TableColumn<Jugador, Integer> seis;
 
   @FXML
-  private TableColumn<Partida, Integer> cinco;
+  private TableColumn<Jugador, Integer> cinco;
 
   @FXML
-  private TableColumn<Partida, Integer> cuatro;
+  private TableColumn<Jugador, Integer> cuatro;
 
   @FXML
-  private TableColumn<Partida, Integer> tres;
+  private TableColumn<Jugador, Integer> tres;
 
   @FXML
-  private TableColumn<Partida, Integer> dos;
+  private TableColumn<Jugador, Integer> dos;
 
   @FXML
-  private TableColumn<Partida, Integer> ases;
+  private TableColumn<Jugador, Integer> ases;
 
   @FXML
-  private TableColumn<Partida, Integer> total;
-
+  private TableColumn<Jugador, Integer> total;
+  
   // RADIO BUTTON
   @FXML
   private RadioButton rbRisco;
@@ -265,45 +267,37 @@ public class riscoController implements Initializable {
 
   // actualizar tabla
 
-  @FXML
-  public void actualizarTabla(ActionEvent event) {
+  public void actualizarTabla() {
 
-    nombre.setCellValueFactory(new PropertyValueFactory<>("nJugadores"));
+    nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 
-    risco.setCellValueFactory(new PropertyValueFactory<>("risco"));
+    risco.setCellValueFactory(new PropertyValueFactory<>("p.get(0)"));
 
-    trece.setCellValueFactory(new PropertyValueFactory<>("trece"));
+    trece.setCellValueFactory(new PropertyValueFactory<>("p.get(1)"));
 
-    escMayor.setCellValueFactory(new PropertyValueFactory<>("escMayor"));
+    escMayor.setCellValueFactory(new PropertyValueFactory<>("p.get(2)"));
 
-    escMenor.setCellValueFactory(new PropertyValueFactory<>("escMenor"));
+    escMenor.setCellValueFactory(new PropertyValueFactory<>("p.get(3)"));
 
-    escPar.setCellValueFactory(new PropertyValueFactory<>("escPar"));
+    escPar.setCellValueFactory(new PropertyValueFactory<>("p.get(4)"));
 
-    escImpar.setCellValueFactory(new PropertyValueFactory<>("escImpar"));
+    escImpar.setCellValueFactory(new PropertyValueFactory<>("p.get(5)"));
 
-    trio.setCellValueFactory(new PropertyValueFactory<>("trio"));
+    trio.setCellValueFactory(new PropertyValueFactory<>("p.get(6)"));
 
-    seis.setCellValueFactory(new PropertyValueFactory<>("seis"));
+    seis.setCellValueFactory(new PropertyValueFactory<>("p.get(7)"));
 
-    cinco.setCellValueFactory(new PropertyValueFactory<>("cinco"));
+    cinco.setCellValueFactory(new PropertyValueFactory<>("p.get(8)"));
 
-    cuatro.setCellValueFactory(new PropertyValueFactory<>("cuatro"));
+    cuatro.setCellValueFactory(new PropertyValueFactory<>("p.get(9)"));
 
-    tres.setCellValueFactory(new PropertyValueFactory<>("tres"));
+    tres.setCellValueFactory(new PropertyValueFactory<>("p.get(10)"));
 
-    dos.setCellValueFactory(new PropertyValueFactory<>("dos"));
+    dos.setCellValueFactory(new PropertyValueFactory<>("p.get(11)"));
 
-    ases.setCellValueFactory(new PropertyValueFactory<>("ases"));
+    ases.setCellValueFactory(new PropertyValueFactory<>("p.get(12)"));
 
-    total.setCellValueFactory(new PropertyValueFactory<>("total"));
-
-    for (int i = 0; i < numJugadores; i++) {
-
-    }
-
-//    table.edit(1, total);
-
+    total.setCellValueFactory(new PropertyValueFactory<>("p.get(13)"));
   }
 
   @FXML
@@ -432,6 +426,13 @@ public class riscoController implements Initializable {
         resultado.setText("Casilla Ases completada con " + n);
       }
     }
+    
+    actualizarTabla();
+    for (Jugador jug : partida.jugadores) {
+      table.getItems().add(jug);
+    }
+    
+    btnAceptar.setDisable(true);
 
   }
 
@@ -511,6 +512,7 @@ public class riscoController implements Initializable {
     cambiarD2.setDisable(false);
     cambiarD3.setDisable(false);
     tirarD.setDisable(true);
+    btnAceptar.setDisable(false); // Activo aceptar para jugar el turno
   }
 
   // para cerrar la pantalla
@@ -567,6 +569,7 @@ public class riscoController implements Initializable {
     player = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando)));
     String nombrejugador = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando))).getNombre();
     jugador.setText(nombrejugador);
+    btnSiguiente.setDisable(false);
   }
 
   @FXML

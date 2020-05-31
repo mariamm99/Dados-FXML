@@ -59,7 +59,7 @@
       <Pane prefHeight="467.0" prefWidth="847.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="250.0" layoutY="19.0" text="Turno del Jugador: " />
-            <Button fx:id="tirarD" layoutX="37.0" layoutY="78.0" mnemonicParsing="false" onAction="#tirarDados" text="Tirar dados" />
+            <Button fx:id="tirarD" disable="true" layoutX="37.0" layoutY="78.0" mnemonicParsing="false" onAction="#tirarDados" text="Tirar dados" />
             <TextField fx:id="jugador" editable="false" layoutX="406.0" layoutY="15.0" />
             <ImageView fx:id="imgDado1" fitHeight="70.0" fitWidth="70.0" layoutX="185.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado2" fitHeight="70.0" fitWidth="70.0" layoutX="323.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
@@ -100,7 +100,7 @@
             <RadioButton fx:id="rbTres" layoutX="315.0" layoutY="188.0" mnemonicParsing="false" text="Tres" toggleGroup="$grupo" />
             <RadioButton fx:id="rbDos" layoutX="423.0" layoutY="188.0" mnemonicParsing="false" text="Dos" toggleGroup="$grupo" />
             <RadioButton fx:id="rbAses" layoutX="512.0" layoutY="188.0" mnemonicParsing="false" text="Ases" toggleGroup="$grupo" />
-            <Button layoutX="627.0" layoutY="186.0" mnemonicParsing="false" onAction="#meterPuntos" text="Aceptar" />
+            <Button fx:id="btnAceptar" disable="true" layoutX="627.0" layoutY="186.0" mnemonicParsing="false" onAction="#meterPuntos" text="Aceptar" />
             <Button fx:id="btnSiguiente" layoutX="592.0" layoutY="15.0" mnemonicParsing="false" onAction="#botonComenzar" text="Comenzar" />
             <Button fx:id="cambiarD1" disable="true" layoutX="172.0" layoutY="122.0" mnemonicParsing="false" onAction="#cambiarDado1" text="Cambiar dado 1" />
             <Button fx:id="cambiarD2" disable="true" layoutX="308.0" layoutY="122.0" mnemonicParsing="false" onAction="#cambiarDado2" text="Cambiar dado 2" />
