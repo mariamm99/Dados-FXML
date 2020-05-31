@@ -64,6 +64,13 @@ public class riscoController implements Initializable {
   // Button
   @FXML
   private Button btnSiguiente;
+
+  @FXML
+  private Button tirarD;
+
+  @FXML
+  private Button cambiarD;
+
   // ImageView
   @FXML
   private ImageView imgDado1;
@@ -241,6 +248,8 @@ public class riscoController implements Initializable {
   }
 
   public void botonComenzar(ActionEvent e) {
+    tirarD.setDisable(false);
+    cambiarD.setDisable(true);
     if (primero) {
       primero = false;
       btnSiguiente.setText("Siguiente Turno");
@@ -471,8 +480,9 @@ public class riscoController implements Initializable {
         file = new Image(".\\risco\\dados\\Dado6.png");
       }
       img.setImage(file);
-
-
+      
+      cambiarD.setDisable(false);
+      tirarD.setDisable(true);
 
     }
   }
@@ -556,7 +566,7 @@ public class riscoController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-
+    
   }
 
 }
