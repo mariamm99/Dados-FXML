@@ -79,7 +79,7 @@ public class Dados {
    * @param nDadosCambiar
    * @return dados
    */
-  String cambiarDados(int nDadosCambiar) {
+  public String cambiarDados(int nDadosCambiar) {
     /**
      * Si se indica mas de 2 se cambiarán todos los dados
      */
