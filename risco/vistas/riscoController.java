@@ -1,5 +1,6 @@
 package risco.vistas;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -43,7 +45,7 @@ public class riscoController implements Initializable {
   private MenuItem importar;
   @FXML
   private MenuItem ayuda;
-  
+
   @FXML
   private Menu mOpciones;
 
@@ -52,11 +54,11 @@ public class riscoController implements Initializable {
 
   @FXML
   private Menu mExit;
-  
+
   // TextField
   @FXML
   private TextField jugador;
-  //TextArea de abajo
+  // TextArea de abajo
   @FXML
   private TextArea resultado;
   // Button
@@ -245,7 +247,7 @@ public class riscoController implements Initializable {
     }
     siguienteJug();
   }
-  
+
   // actualizar tabla
 
   @FXML
@@ -347,7 +349,6 @@ public class riscoController implements Initializable {
     } else if (rbEscImpar.isSelected()) {
       n = Partida.EscaleraImpar(player);
 
-
       if (n == 0) {
         resultado.setText("Ha obtenido 0 puntos");
       } else if (n == 1) {
@@ -439,8 +440,41 @@ public class riscoController implements Initializable {
   // primeros dados que se lanzan
   @FXML
   void tirarDados(ActionEvent event) {
-    System.out.println(player);
-    System.out.println(Partida.tirarDados(player));
+
+    int d;
+    ImageView img;
+    Image file = null;
+    for (int i = 0; i < 3; i++) {
+
+      if (i == 0) {
+        d = Partida.tirarDados(player).getD1();
+        img = imgDado1;
+      } else if (i == 1) {
+        d = Partida.tirarDados(player).getD2();
+        img = imgDado2;
+      } else {
+        d = Partida.tirarDados(player).getD3();
+        img = imgDado3;
+      }
+
+      if (d == 1) {
+        file = new Image(".\\risco\\dados\\Dado1.png");
+      } else if (d == 2) {
+        file = new Image(".\\risco\\dados\\Dado2.png");
+      } else if (d == 3) {
+        file = new Image(".\\risco\\dados\\Dado3.png");
+      } else if (d == 4) {
+        file = new Image(".\\risco\\dados\\Dado4.png");
+      } else if (d == 5) {
+        file = new Image(".\\risco\\dados\\Dado5.png");
+      } else if (d == 6) {
+        file = new Image(".\\risco\\dados\\Dado6.png");
+      }
+      img.setImage(file);
+
+
+
+    }
   }
 
   // para cerrar la pantalla
@@ -484,9 +518,9 @@ public class riscoController implements Initializable {
   }
 
   /**
-   * Método para poner el nombre del jugador en el TextField de la 
-   * ventana principal después de alguna operación, como jugar un turno
-   * por otro jugador o al inicio de la partida.
+   * Método para poner el nombre del jugador en el TextField de la ventana
+   * principal después de alguna operación, como jugar un turno por otro jugador o
+   * al inicio de la partida.
    */
   public void siguienteJug() {
     if (jugadorJugando >= numJugadores) {
@@ -494,12 +528,11 @@ public class riscoController implements Initializable {
     } else {
       jugadorJugando++;
     }
-    player=partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando)));
+    player = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando)));
     String nombrejugador = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando))).getNombre();
     jugador.setText(nombrejugador);
   }
-  
-  
+
   @FXML
   void menuTexto(Event event) {
     String id = ((Menu) event.getSource()).getId();
@@ -508,21 +541,22 @@ public class riscoController implements Initializable {
       resultado.setText("Cierra y termina el programa");
 
     } else if (id.equals(mOpciones.getId())) {
-      resultado.setText("Tiene la opción de exportar los datos de la partida y guardarlas en un archivo e importar datos de otras partidas");
+      resultado.setText(
+          "Tiene la opción de exportar los datos de la partida y guardarlas en un archivo e importar datos de otras partidas");
 
     } else if (id.equals(mHelp.getId())) {
       resultado.setText("Muestra como es el juego");
     }
   }
-  
+
   @FXML
   void limpiarResultado(Event event) {
     resultado.setText("");
   }
-  
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
+
   }
 
 }

@@ -60,7 +60,7 @@ public class TestPartida {
         System.out.print("\n\nTurno " + i + " del jugador "
             + partida.jugadores.get(partida.jugadores.indexOf(new Jugador(j))).getNombre());
         System.out.println("\nEn esta tirada obtienes:\n"
-            + Partida.tirarDados(partida.jugadores.get(partida.jugadores.indexOf(new Jugador(j)))));
+            + Partida.tirarDados(player));
 
         String cambioDado = Teclado.leerCadena("\n¿Quieres cambiar algún dado? [S/N]: ").toUpperCase();
         if (cambioDado.equals("S")) {

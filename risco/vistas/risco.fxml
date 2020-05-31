@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
@@ -61,7 +62,10 @@
             <Label layoutX="249.0" layoutY="30.0" text="Turno del Jugador: " />
             <Button layoutX="38.0" layoutY="65.0" mnemonicParsing="false" onAction="#tirarDados" text="Tirar dados" />
             <TextField fx:id="jugador" editable="false" layoutX="411.0" layoutY="27.0" />
-            <ImageView fx:id="imgDado1" fitHeight="65.0" fitWidth="75.0" layoutX="185.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgDado1" fitHeight="65.0" fitWidth="75.0" layoutX="185.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../dados/Dado1.png" />
+               </image></ImageView>
             <ImageView fx:id="imgDado2" fitHeight="74.0" fitWidth="90.0" layoutX="352.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado3" fitHeight="62.0" fitWidth="70.0" layoutX="599.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
             <TableView fx:id="table" layoutX="7.0" layoutY="219.0" onSort="#actualizarTabla" prefHeight="306.0" prefWidth="817.0">
