@@ -261,7 +261,7 @@ public class riscoController implements Initializable {
     cambiarD3.setDisable(true);
     if (primero) {
       primero = false;
-      btnSiguiente.setText("Siguiente Turno");
+      btnSiguiente.setVisible(false);
     }
     siguienteJug();
   }
