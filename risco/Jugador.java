@@ -205,16 +205,14 @@ public class Jugador {
    * 20 ; E.Mayor: 10 ; ... Total: 817 ; Número jugadores: 2 ; Puesto: 1 Fecha:
    * 22/04/2020 ; Risco: 50 ; Trece: 20 ; E.Mayor: 0 ; ... Total: 807 ; Número
    * jugadores: 2 ; Puesto: 2
+   * 
    */
   public void guardaDatos(int nJugadores, int pos) {
 
     // Nombre de jugador
     try {
       BufferedWriter archivo = creaArchivo();
-
-      /*
       
-       */
 
       // Fecha
       java.util.Date fechalarga = new Date();
@@ -246,6 +244,45 @@ public class Jugador {
     } catch (IOException e) {
       System.err.println("Error en la escritura del fichero");
     }
+  }
+  
+  /**
+   * Método basado en guardaDatos pero para ser compatible con la versión en JavaFX
+   * 
+   * Exporta los datos Estructura fichero: Fecha: 21/04/2020 ; Risco: 50 ; Trece:
+   * 20 ; E.Mayor: 10 ; ... Total: 817 ; Número jugadores: 2 ; Puesto: 1 Fecha:
+   * 22/04/2020 ; Risco: 50 ; Trece: 20 ; E.Mayor: 0 ; ... Total: 807 ; Número
+   * jugadores: 2 ; Puesto: 2
+   * 
+   */
+  public String guardaDatosFX(int nJugadores, int pos) {
+      String datosaExportar;
+      // Fecha
+      java.util.Date fechalarga = new Date();
+      String fecha = new SimpleDateFormat("dd/MM/yyyy").format(fechalarga);
+      datosaExportar = ("Fecha: " + fecha + " ; ");
+
+      // Puntuacion
+      String[] juegos = { "Risco: ", "Trece:  ", "E.Mayor: ", "E.Menor: ", "E.Par: ", "E.Impar: ", "Trio: ", "Seis: ",
+          "Cinco: ", "Cuatro: ", "Tres: ", "Dos: ", "As: ", "Total: " };
+      for (int i = 0; i <= 13; i++) {
+        if (p.get(i) != null) {
+          datosaExportar += (juegos[i] + p.get(i) + " ; ");
+        } else {
+          datosaExportar += (juegos[i] + "\t ; ");
+        }
+      }
+
+      // Número de jugadores
+      datosaExportar += ("Número jugadores: " + nJugadores + " ; ");
+
+      // Puesto en la partida
+      datosaExportar += ("Puesto: " + pos);
+
+      // Final (cierre fichero)
+      datosaExportar += "\n"; // Hago una línea nueva, pensando en añadir mas datos en el futuro.
+      System.out.println("Datos exportados.");
+      return datosaExportar;
   }
 
   /* Métodos equals y hashCode generados por Eclipse */

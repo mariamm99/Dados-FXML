@@ -1,5 +1,8 @@
 package risco.vistas;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,6 +30,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import risco.Jugador;
 import risco.Partida;
@@ -195,6 +200,11 @@ public class riscoController implements Initializable {
   int jugadorJugando = 0; // Número de jugador que está jugando en este momento
   boolean casillaOcupada; // Boolean que controla si la casilla estaba ocupada
   static Jugador player;
+  
+  // Para guardar fichero
+  private FileChooser fileSaver;
+  private File ficheroGuardar;
+  private BufferedWriter ficheroGuardador;
 
   // Ventana donde aparecerán los textFields para indicar el nombre de los
   // jugadores
@@ -555,7 +565,19 @@ public class riscoController implements Initializable {
   @FXML
   public void exportar(ActionEvent event) {
     int pos = partida.posicion(player);
-    player.guardaDatos(numJugadores, pos);
+    try {
+      fileSaver = new FileChooser();
+      fileSaver.setInitialFileName("risco_" + player.getNombre() + ".txt");
+      fileSaver.getExtensionFilters().addAll(
+          new ExtensionFilter("Archivos de Texto", "*.txt"));
+      ficheroGuardar = fileSaver.showSaveDialog(new Stage());
+      ficheroGuardador = new BufferedWriter(new FileWriter(ficheroGuardar.getAbsolutePath()));
+      ficheroGuardador.write(player.guardaDatosFX(numJugadores, pos));
+      ficheroGuardador.close();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 
   @FXML

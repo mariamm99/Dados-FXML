@@ -22,7 +22,7 @@
         <menus>
           <Menu fx:id="mOpciones" mnemonicParsing="false" onHidden="#limpiarResultado" onShown="#menuTexto" text="Opciones">
             <items>
-              <MenuItem fx:id="exportar" mnemonicParsing="false" text="Exportar">
+              <MenuItem fx:id="exportar" mnemonicParsing="false" onAction="#exportar" text="Exportar">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
