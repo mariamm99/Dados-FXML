@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -29,7 +28,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import risco.Dados;
 import risco.Jugador;
 import risco.Partida;
 
@@ -195,6 +193,7 @@ public class riscoController implements Initializable {
                           // para variar el texto del botón Comenzar/Siguiente Turno
   static int numJugadores; // Número de jugadores en la partida
   int jugadorJugando = 0; // Número de jugador que está jugando en este momento
+  boolean casillaOcupada; // Boolean que controla si la casilla estaba ocupada
   static Jugador player;
 
   // Ventana donde aparecerán los textFields para indicar el nombre de los
@@ -255,7 +254,11 @@ public class riscoController implements Initializable {
   }
 
   public void botonComenzar() {
-    tirarD.setDisable(false);
+    if (casillaOcupada) {
+      
+    } else {
+      tirarD.setDisable(false);
+    }
     cambiarD1.setDisable(true);
     cambiarD2.setDisable(true);
     cambiarD3.setDisable(true);
@@ -304,7 +307,7 @@ public class riscoController implements Initializable {
   @FXML
   public void meterPuntos(ActionEvent Event) {
     int n;
-    boolean casillaOcupada = false;
+    casillaOcupada = false;
 
     
     if (rbRisco.isSelected()) {
@@ -435,7 +438,9 @@ public class riscoController implements Initializable {
       table.getItems().add(jug);
     }
     
-    btnAceptar.setDisable(true);
+    if (!casillaOcupada) {
+      btnAceptar.setDisable(true);
+    }
     botonComenzar();
 
   }
@@ -566,9 +571,9 @@ public class riscoController implements Initializable {
    */
   public void siguienteJug() {
     
-  
-   
-    if (jugadorJugando >= numJugadores) {
+    if (casillaOcupada) {
+      
+    } else if (jugadorJugando >= numJugadores) {
       jugadorJugando = 1;
     } else {
       jugadorJugando++;
