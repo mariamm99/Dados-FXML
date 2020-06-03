@@ -149,6 +149,10 @@ public class Jugador {
   public void setDadosJugador(Dados dadosJugador) {
     this.dadosJugador = dadosJugador;
   }
+  
+  public void setDadoJugador(int dado) {
+   dadosJugador.cambiarDado(dado);
+  }
 
   public ArrayList<Integer> getP() {
     return p;

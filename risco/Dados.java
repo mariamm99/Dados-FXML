@@ -30,6 +30,7 @@ public class Dados {
    * @return dado número 1
    */
   public int getD1() {
+    System.out.println(d1 + "aa");
     return d1;
   }
 
@@ -46,6 +47,7 @@ public class Dados {
    * @return dado número 2
    */
   public int getD2() {
+    System.out.println(d2 + "aa");
     return d2;
   }
 
@@ -62,6 +64,7 @@ public class Dados {
    * @return dado número 3
    */
   public int getD3() {
+    System.out.println(d3 + "aa");
     return d3;
   }
 
@@ -128,6 +131,17 @@ public class Dados {
       }
     }
     return toString();
+  }
+
+  public void cambiarDado(int dado) {
+
+    if (dado == 1) {
+      setD1();
+    } else if (dado == 2) {
+      setD2();
+    } else {
+      setD3();
+    }
   }
 
   /**

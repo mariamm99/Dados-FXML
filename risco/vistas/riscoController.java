@@ -29,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import risco.Dados;
 import risco.Jugador;
 import risco.Partida;
 
@@ -253,7 +254,7 @@ public class riscoController implements Initializable {
     });
   }
 
-  public void botonComenzar(ActionEvent e) {
+  public void botonComenzar() {
     tirarD.setDisable(false);
     cambiarD1.setDisable(true);
     cambiarD2.setDisable(true);
@@ -301,10 +302,11 @@ public class riscoController implements Initializable {
   }
 
   @FXML
-  public void meterPuntos() {
+  public void meterPuntos(ActionEvent Event) {
     int n;
     boolean casillaOcupada = false;
 
+    
     if (rbRisco.isSelected()) {
       n = Partida.Risco(player);
       if (n == 0) {
@@ -426,6 +428,7 @@ public class riscoController implements Initializable {
         resultado.setText("Casilla Ases completada con " + n);
       }
     }
+    table.getItems().clear();
     
     actualizarTabla();
     for (Jugador jug : partida.jugadores) {
@@ -433,6 +436,7 @@ public class riscoController implements Initializable {
     }
     
     btnAceptar.setDisable(true);
+    botonComenzar();
 
   }
 
@@ -453,18 +457,21 @@ public class riscoController implements Initializable {
 
   @FXML
   void cambiarDado1(ActionEvent event) {
+    player.setDadoJugador(1);
     tirarUnDado(1);
     cambiarD1.setDisable(true);
   }
   
   @FXML
   void cambiarDado2(ActionEvent event) {
+    player.setDadoJugador(2);
     tirarUnDado(2);
     cambiarD2.setDisable(true);
   }
   
   @FXML
   void cambiarDado3(ActionEvent event) {
+    player.setDadoJugador(3);
     tirarUnDado(3);
     cambiarD3.setDisable(true);
   }
@@ -475,16 +482,20 @@ public class riscoController implements Initializable {
     Image file = null;
     
     if (nDado == 1) {
-      d = Partida.tirarDados(player).getD1();
+      d = player.getDadosJugador().getD1();
+      System.out.println(player.getDadosJugador());
       img = imgDado1;
     } else if (nDado == 2) {
-      d = Partida.tirarDados(player).getD2();
+      d =player.getDadosJugador().getD2();
+      System.out.println(player.getDadosJugador());
       img = imgDado2;
     } else {
-      d = Partida.tirarDados(player).getD3();
+      d = player.getDadosJugador().getD3();
+      System.out.println(player.getDadosJugador());
       img = imgDado3;
     }
 
+    System.out.println(d);
     if (d == 1) {
       file = new Image(".\\risco\\dados\\Dado1.png");
     } else if (d == 2) {
@@ -554,6 +565,9 @@ public class riscoController implements Initializable {
    * al inicio de la partida.
    */
   public void siguienteJug() {
+    
+  
+   
     if (jugadorJugando >= numJugadores) {
       jugadorJugando = 1;
     } else {
@@ -562,6 +576,9 @@ public class riscoController implements Initializable {
     player = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando)));
     String nombrejugador = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando))).getNombre();
     jugador.setText(nombrejugador);
+    for (int i = 1; i <4; i++) {
+      player.setDadoJugador(i);
+    }
     btnSiguiente.setDisable(false);
   }
 
