@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="risco.vistas.riscoController">
+<BorderPane fx:id="rootBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="risco.vistas.riscoController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -27,25 +27,25 @@
                         <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem fx:id="importar" mnemonicParsing="false" text="Importar">
+                  <MenuItem fx:id="importar" mnemonicParsing="false" onAction="#importa" text="Importar">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
             </items>
           </Menu>
-          <Menu fx:id="mHelp" mnemonicParsing="false" onAction="#help" onHidden="#limpiarResultado" onShown="#menuTexto" text="Help">
+          <Menu fx:id="mHelp" mnemonicParsing="false" onAction="#help" onHidden="#limpiarResultado" onShown="#menuTexto" text="Ayuda">
             <items>
-              <MenuItem fx:id="ayuda" mnemonicParsing="false" onAction="#help" text="Help">
+              <MenuItem fx:id="ayuda" mnemonicParsing="false" onAction="#help" text="Ayuda">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
             </items>
           </Menu>
-          <Menu fx:id="mExit" mnemonicParsing="false" onAction="#salir" onHidden="#limpiarResultado" onShown="#menuTexto" text="Exit">
+          <Menu fx:id="mExit" mnemonicParsing="false" onHidden="#limpiarResultado" onShown="#menuTexto" text="Salir">
             <items>
-              <MenuItem mnemonicParsing="false" text="Exit">
+              <MenuItem fx:id="salir" mnemonicParsing="false" onAction="#salir" text="Salir">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
@@ -64,26 +64,26 @@
             <ImageView fx:id="imgDado1" fitHeight="70.0" fitWidth="70.0" layoutX="185.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado2" fitHeight="70.0" fitWidth="70.0" layoutX="323.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="imgDado3" fitHeight="70.0" fitWidth="70.0" layoutX="452.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
-            <TableView fx:id="table" layoutX="7.0" layoutY="219.0" onSort="#actualizarTabla" prefHeight="306.0" prefWidth="817.0">
+            <TableView fx:id="table" layoutX="7.0" layoutY="219.0" onSort="#actualizarTabla" prefHeight="306.0" prefWidth="831.0">
               <columns>
-                <TableColumn fx:id="nombre" prefWidth="65.0" text="Jugador" />
-                <TableColumn fx:id="risco" prefWidth="60.0" text="risco" />
-                  <TableColumn fx:id="trece" prefWidth="55.0" text="trece" />
-                  <TableColumn fx:id="escMayor" prefWidth="60.0" text="Esc Mayor" />
-                  <TableColumn fx:id="escMenor" prefWidth="60.0" text="Esc Menor" />
-                  <TableColumn fx:id="escPar" prefWidth="60.0" text="Esc.  Par" />
-                  <TableColumn fx:id="escImpar" prefWidth="60.0" text="Esc. Impar" />
-                  <TableColumn fx:id="trio" prefWidth="55.0" text="trio" />
-                  <TableColumn fx:id="seis" prefWidth="50.0" text="Seis" />
-                  <TableColumn fx:id="cinco" prefWidth="50.0" text="Cinco" />
-                  <TableColumn fx:id="cuatro" prefWidth="50.0" text="Cuatro" />
-                  <TableColumn fx:id="tres" prefWidth="50.0" text="Tres" />
-                  <TableColumn fx:id="dos" prefWidth="50.0" text="Dos" />
-                  <TableColumn fx:id="ases" prefWidth="50.0" text="Ases" />
-                  <TableColumn fx:id="total" prefWidth="50.0" text="Total" />
+                <TableColumn fx:id="nombre" prefWidth="105.0" text="Jugador" />
+                <TableColumn fx:id="risco" prefWidth="45.0" text="Risco" />
+                  <TableColumn fx:id="trece" prefWidth="44.0" text="Trece" />
+                  <TableColumn fx:id="escMayor" prefWidth="67.0" text="Esc. Mayor" />
+                  <TableColumn fx:id="escMenor" prefWidth="68.0" text="Esc. Menor" />
+                  <TableColumn fx:id="escPar" prefWidth="54.0" text="Esc.  Par" />
+                  <TableColumn fx:id="escImpar" prefWidth="73.0" text="Esc. Impar" />
+                  <TableColumn fx:id="trio" prefWidth="39.0" text="Trío" />
+                  <TableColumn fx:id="seis" prefWidth="48.0" text="Seis" />
+                  <TableColumn fx:id="cinco" prefWidth="53.0" text="Cinco" />
+                  <TableColumn fx:id="cuatro" prefWidth="57.0" text="Cuatro" />
+                  <TableColumn fx:id="tres" prefWidth="42.0" text="Tres" />
+                  <TableColumn fx:id="dos" prefWidth="43.0" text="Dos" />
+                  <TableColumn fx:id="ases" prefWidth="44.0" text="Ases" />
+                  <TableColumn fx:id="total" prefWidth="48.0" text="Total" />
               </columns>
             </TableView>
-            <RadioButton fx:id="rbRisco" layoutX="37.0" layoutY="157.0" mnemonicParsing="false" text="Risco">
+            <RadioButton fx:id="rbRisco" layoutX="41.0" layoutY="157.0" mnemonicParsing="false" text="Risco">
                <toggleGroup>
                   <ToggleGroup fx:id="grupo" />
                </toggleGroup>
@@ -111,6 +111,6 @@
       </Pane>
    </left>
    <bottom>
-      <TextArea fx:id="resultado" prefHeight="55.0" prefWidth="846.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="resultado" editable="false" prefHeight="55.0" prefWidth="846.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

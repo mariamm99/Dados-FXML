@@ -1,7 +1,10 @@
 package risco.vistas;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -12,6 +15,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -33,6 +37,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import risco.HistorialFX;
 import risco.Jugador;
 import risco.Partida;
 
@@ -48,6 +53,8 @@ public class riscoController implements Initializable {
   private MenuItem importar;
   @FXML
   private MenuItem ayuda;
+  @FXML
+  private MenuItem salir;
 
   @FXML
   private Menu mOpciones;
@@ -205,6 +212,24 @@ public class riscoController implements Initializable {
   private FileChooser fileSaver;
   private File ficheroGuardar;
   private BufferedWriter ficheroGuardador;
+  
+  // Para cargar fichero
+  private FileChooser fileChooser;
+  private File fichero;
+  private BufferedReader ficheroLeer;
+  // Historial
+  @FXML
+  private Label imNombre;
+  @FXML
+  private Label imHechas;
+  @FXML
+  private Label imMedia;
+  @FXML
+  private Label imPrimero;
+  @FXML
+  private Label imPuesto;
+  @FXML
+  private Button imcerrar;
 
   // Ventana donde aparecerán los textFields para indicar el nombre de los
   // jugadores
@@ -455,21 +480,6 @@ public class riscoController implements Initializable {
 
   }
 
-  /* 
-   * Esto si no me equivoco no lo usamos, ¿no?
-   * 
-   * // ventana donde se mostrará el resultado de los dados
-  @FXML
-  public void ventanaDados(ActionEvent event) throws IOException {
-    Stage stage = new Stage();
-    stage.setTitle("Alta");
-
-    FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("NumDados.fxml"));
-    Pane root = fxml.<Pane>load();
-    stage.setScene(new Scene(root));
-    stage.showAndWait();
-  } */
-
   @FXML
   void cambiarDado1(ActionEvent event) {
     player.setDadoJugador(1);
@@ -558,7 +568,7 @@ public class riscoController implements Initializable {
         + "según tus dados debes indicar si has echo risco, trece, seis, cinco. \n"
         + "Mostramos una tabla de las puntuaciones maximas de cada opción, debes rellanarlas todas\n"
         + "y no puedes repetir la opcion"));
-    stageListar.setScene(new Scene(root, 400, 400));
+    stageListar.setScene(new Scene(root, 600, 300));
     stageListar.show();
   }
 
@@ -581,9 +591,43 @@ public class riscoController implements Initializable {
   }
 
   @FXML
-  public void importa(ActionEvent event) {
-    // int pos = partida.posicion(player);
-    // player.guardaDatos(nJugadores, pos);
+  public void importa(ActionEvent event) throws IOException {
+    try {
+      fileChooser = new FileChooser();
+      fileChooser.getExtensionFilters().addAll(
+          new ExtensionFilter("Archivos de Texto", "*.txt"));
+      fichero = fileChooser.showOpenDialog(new Stage());
+      ficheroLeer = new BufferedReader(new FileReader(fichero.getAbsolutePath()));
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    HistorialFX history = new HistorialFX(player, fichero);
+    
+    Stage stage = new Stage();
+    stage.setTitle("Datos importados");
+
+    FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("Importacion.fxml"));
+    Pane root = fxml.<Pane>load();
+    stage.setScene(new Scene(root));
+    
+    /*
+    imNombre.setText(history.getNombreJugador());
+    imHechas.setText(Integer.toString(history.getNumeroPartidas()));
+    imMedia.setText(Double.toString(history.getMediaPuntos()));
+    imPrimero.setText(Integer.toString(history.getPartidasPrimero()));
+    imPuesto.setText(Double.toString(history.getPuestoMedio()));
+    
+    imcerrar.setOnAction(e -> {stage.close();});
+    
+    */
+    
+    stage.show();
+    
+    System.out.println(history);
+    
+    ficheroLeer.close();
   }
 
   /**
@@ -624,6 +668,8 @@ public class riscoController implements Initializable {
       resultado.setText("Muestra como es el juego");
     }
   }
+  
+  
 
   @FXML
   void limpiarResultado(Event event) {

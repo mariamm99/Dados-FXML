@@ -13,13 +13,14 @@ import java.util.regex.Pattern;
  * jugadores que había y la posición del jugador en cuestión.
  * 
  */
-public class Historial {
+public class HistorialFX {
   // Atributos ////////
   private String nombreJugador;
   private int numeroPartidas; // Número de partidas jugadas (número de líneas)
   private float mediaPuntos; // Suma todos los puntos de todas las partidas
   private int partidasPrimero; // Veces que estaba primero
   private float puestoMedio; // Media de la posición de todas las partidas
+  private File fichero; // Fichero que viene desde riscoController.java (JavaFX)
   private BufferedReader archivo; // Archivo con el historial
 
   /**
@@ -28,7 +29,7 @@ public class Historial {
    * @param player
    * @throws IOException
    */
-  public Historial(Jugador player) throws IOException {
+  public HistorialFX(Jugador player) throws IOException {
     this.nombreJugador = player.getNombre();
     this.archivo = abrirFichero();
     this.numeroPartidas = cuentaLineas(); // Inicializamos con 0
@@ -45,8 +46,9 @@ public class Historial {
    * @param player
    * @throws IOException
    */
-  public Historial(Jugador player, File fichero) throws IOException {
+  public HistorialFX(Jugador player, File fichero) throws IOException {
     this.nombreJugador = player.getNombre();
+    this.fichero = fichero;
     this.archivo = abrirFichero(fichero);
     this.numeroPartidas = cuentaLineas(); // Inicializamos con 0
     this.mediaPuntos = 0; // Inicializamos con 0
@@ -55,7 +57,7 @@ public class Historial {
   }
 
   // Getters & Setters
-  private String getNombreJugador() {
+  public String getNombreJugador() {
     return nombreJugador;
   }
 
@@ -67,7 +69,7 @@ public class Historial {
     this.archivo = archivo;
   }
 
-  private int getNumeroPartidas() {
+  public int getNumeroPartidas() {
     return numeroPartidas;
   }
 
@@ -83,7 +85,7 @@ public class Historial {
    * Calcula la media de los puntos obtenidos en las partidas guardadas en el historial
    * @return Media de los puntos obtenidos
    */
-  private float getMediaPuntos() {
+  public float getMediaPuntos() {
 
     String texto;
     float veces = 0;
@@ -117,7 +119,7 @@ public class Historial {
    *Calcula las veces que ha quedado primero en las partida registradas
    * @return PartidasPrimero
    */
-  private int getPartidasPrimero() {
+  public int getPartidasPrimero() {
 
     String texto;
 
@@ -145,7 +147,7 @@ public class Historial {
    * ha quedado y calcular la media.
    * @return media de los puestos que ha quedado en las partidas
    */
-  private float getPuestoMedio() {
+  public float getPuestoMedio() {
 
     float veces = 0;
 
@@ -220,7 +222,7 @@ public class Historial {
     while (archivo.readLine() != null) {
       nPartidas++;
     }
-    setArchivo(abrirFichero()); // Vuelvo a abrir el fichero y meterlo en el objeto, porque ahora estará leyendo
+    setArchivo(abrirFichero(fichero)); // Vuelvo a abrir el fichero y meterlo en el objeto, porque ahora estará leyendo
                                 // el final
     return nPartidas;
   }
@@ -238,9 +240,9 @@ public class Historial {
         texto += linea + "\n";
       }
     } catch (IOException e) {
-      System.err.println("error al leer el archivo");
+      System.err.println("Error al leer el archivo");
     }
-    setArchivo(abrirFichero());
+    setArchivo(abrirFichero(fichero));
     return texto;
   }
 
