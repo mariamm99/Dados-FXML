@@ -8,31 +8,34 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * La clase Jugador crea el jugador con los datos de cada jugador: nombre, numero de jugador, 
- * arraylist con las puntuaciones y el resultado de los dados del jugador.
+ * La clase Jugador crea el jugador con los datos de cada jugador: nombre,
+ * numero de jugador, arraylist con las puntuaciones y el resultado de los dados
+ * del jugador.
  * 
- * Además de la información del jugador, en esta clase creamos el método encargado de exportar los datos
- * del jugador a un archivo txt que se llamara risco_<nombre del jugador>.txt. Este método nos permitirá
- * guardar los datos de la partida (su puntuación, puesto en el que ha quedado, contra cuantos jugadores
- * jugaba, etc)
+ * Además de la información del jugador, en esta clase creamos el método
+ * encargado de exportar los datos del jugador a un archivo txt que se llamara
+ * risco_<nombre del jugador>.txt. Este método nos permitirá guardar los datos
+ * de la partida (su puntuación, puesto en el que ha quedado, contra cuantos
+ * jugadores jugaba, etc)
  *
  */
 public class Jugador {
   public String nombre;
   private int nj; // Número de Jugador, como si fuera un código
   public ArrayList<Integer> p = new ArrayList<Integer>(); // ArrayList de puntuaciones
-  Dados dadosJugador; 
-  
+  Dados dadosJugador;
+
   /**
    * Constructor con los parámetros:
+   * 
    * @param nj
    * @param nombre
    */
-  public Jugador (int nj, String nombre) {
+  public Jugador(int nj, String nombre) {
     this.nj = nj; // Número de jugador
     this.nombre = nombre; // Nombre de jugador
     this.dadosJugador = new Dados(); // Genero un objeto Dado, el dado a su vez contiene tres dados (d1, d2, d3)
-    p.add(null); // 0 Risco 
+    p.add(null); // 0 Risco
     p.add(null); // 1 Trece
     p.add(null); // 2 Escalera mayor
     p.add(null); // 3 Escalera menor
@@ -47,25 +50,84 @@ public class Jugador {
     p.add(null); // 12 As
     p.add(null); // 13 Para guardar el total
   }
-  
+
+  public Integer getP0() {
+    return p.get(0);
+  }
+
+  public Integer getP1() {
+    return p.get(1);
+  }
+
+  public Integer getP2() {
+    return p.get(2);
+  }
+
+  public Integer getP3() {
+    return p.get(3);
+  }
+
+  public Integer getP4() {
+    return p.get(4);
+  }
+
+  public Integer getP5() {
+    return p.get(5);
+  }
+
+  public Integer getP6() {
+    return p.get(6);
+  }
+
+  public Integer getP7() {
+    return p.get(7);
+  }
+
+  public Integer getP8() {
+    return p.get(8);
+  }
+
+  public Integer getP9() {
+    return p.get(9);
+  }
+
+  public Integer getP10() {
+    return p.get(10);
+  }
+
+  public Integer getP11() {
+    return p.get(11);
+  }
+
+  public Integer getP12() {
+    return p.get(12);
+  }
+
+  public Integer getP13() {
+    return p.get(13);
+  }
+
   /**
    * Constructor con el parámetro:
+   * 
    * @param nj
    */
   public Jugador(int nj) {
     this.nj = nj;
   }
-  
-/**
- * Get nombre del jugador
- * @return nombre
- */
+
+  /**
+   * Get nombre del jugador
+   * 
+   * @return nombre
+   */
   public String getNombre() {
     return nombre;
   }
 
   /**
    * Set nombre, da el nombre al jugador.
+   * 
    * @param nombre
    */
   public void setNombre(String nombre) {
@@ -74,6 +136,7 @@ public class Jugador {
 
   /**
    * getDadosJugador devuelve el parámetro:
+   * 
    * @return Dados del Jugador
    */
   public Dados getDadosJugador() {
@@ -86,26 +149,26 @@ public class Jugador {
   public void setDadosJugador(Dados dadosJugador) {
     this.dadosJugador = dadosJugador;
   }
-  
+
   public ArrayList<Integer> getP() {
     return p;
   }
 
-  
-  int tmp=0; // Variable que almacena todos los puntos
+  int tmp = 0; // Variable que almacena todos los puntos
 
   /**
- * Almacena los puntos totales.
- * @return los puntos totales.
- */
+   * Almacena los puntos totales.
+   * 
+   * @return los puntos totales.
+   */
   public int totalPtos(int i) {
-    
+
     boolean hayPtos = false;
-    
-      if (p.get(i) != null) {
-          tmp += p.get(i);
-          hayPtos = true;
-      
+
+    if (p.get(i) != null) {
+      tmp += p.get(i);
+      hayPtos = true;
+
     }
     if (hayPtos) {
       return tmp;
@@ -113,70 +176,73 @@ public class Jugador {
       return 0;
     }
   }
-  
+
   /**
    * Método para crear archivos para la exportación de datos.
+   * 
    * @return el archivo que se crea
    */
   private BufferedWriter creaArchivo() {
     BufferedWriter manejadorExp = null;
     try {
-      manejadorExp = new BufferedWriter(new FileWriter("risco_" + this.nombre + ".txt", true)); // Con true hace que pueda seguir en un archivo sin "macharlo"
+      manejadorExp = new BufferedWriter(new FileWriter("risco_" + this.nombre + ".txt", true)); // Con true hace que
+                                                                                                // pueda seguir en un
+                                                                                                // archivo sin
+                                                                                                // "macharlo"
     } catch (Exception e) {
       System.err.println("Error, no ha sido escribir en risco_" + this.nombre + ".txt");
       System.exit(2);
     }
     return manejadorExp;
   }
-  
+
   /**
-   * Exporta los datos
-   * Estructura fichero:
-   *     Fecha: 21/04/2020 ; Risco: 50 ; Trece: 20 ; E.Mayor: 10 ; ... Total: 817 ; Número jugadores: 2 ; Puesto: 1
-   *     Fecha: 22/04/2020 ; Risco: 50 ; Trece: 20 ; E.Mayor: 0 ; ... Total: 807 ; Número jugadores: 2 ; Puesto: 2   
+   * Exporta los datos Estructura fichero: Fecha: 21/04/2020 ; Risco: 50 ; Trece:
+   * 20 ; E.Mayor: 10 ; ... Total: 817 ; Número jugadores: 2 ; Puesto: 1 Fecha:
+   * 22/04/2020 ; Risco: 50 ; Trece: 20 ; E.Mayor: 0 ; ... Total: 807 ; Número
+   * jugadores: 2 ; Puesto: 2
    */
-  public void guardaDatos(int nJugadores, int pos)  {
-  
+  public void guardaDatos(int nJugadores, int pos) {
+
     // Nombre de jugador
     try {
       BufferedWriter archivo = creaArchivo();
-      
+
       /*
-   
-       */
       
+       */
+
       // Fecha
       java.util.Date fechalarga = new Date();
       String fecha = new SimpleDateFormat("dd/MM/yyyy").format(fechalarga);
       archivo.write("Fecha: " + fecha + " ; ");
-      
+
       // Puntuacion
-      String[] juegos = {"Risco: ", "Trece:  ", "E.Mayor: ", "E.Menor: ", "E.Par: ", "E.Impar: ", "Trio: ", "Seis: ", "Cinco: ",
-          "Cuatro: ", "Tres: ", "Dos: ", "As: ", "Total: "};
-      for (int i=0;i<=13;i++) {
+      String[] juegos = { "Risco: ", "Trece:  ", "E.Mayor: ", "E.Menor: ", "E.Par: ", "E.Impar: ", "Trio: ", "Seis: ",
+          "Cinco: ", "Cuatro: ", "Tres: ", "Dos: ", "As: ", "Total: " };
+      for (int i = 0; i <= 13; i++) {
         if (p.get(i) != null) {
           archivo.write(juegos[i] + p.get(i) + " ; ");
         } else {
           archivo.write(juegos[i] + "\t ; ");
         }
       }
-      
+
       // Número de jugadores
       archivo.write("Número jugadores: " + nJugadores + " ; ");
-      
+
       // Puesto en la partida
       archivo.write("Puesto: " + pos);
-      
+
       // Final (cierre fichero)
       archivo.newLine(); // Hago una línea nueva, pensando en añadir mas datos en el futuro.
       archivo.close();
       System.out.println("Datos exportados.");
-  
+
     } catch (IOException e) {
       System.err.println("Error en la escritura del fichero");
     }
   }
-  
 
   /* Métodos equals y hashCode generados por Eclipse */
   @Override
@@ -203,7 +269,7 @@ public class Jugador {
 
   @Override
   public String toString() {
-    return "Jugador [nombre=" + nombre +  ", dadosJugador=" + dadosJugador + "]";
+    return "Jugador [nombre=" + nombre + ", dadosJugador=" + dadosJugador + "]";
   }
-  
- }
+
+}

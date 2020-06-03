@@ -205,7 +205,7 @@ public class TestPartida {
               System.out.println("Casilla ocupada indique una casilla vacia");
               casillaOcupada = true;
             } else {
-              System.out.println("Casilla treses completada con " + n);
+              System.out.println("Casilla treses completada con " + n + " puntos");
             }
             break;
 

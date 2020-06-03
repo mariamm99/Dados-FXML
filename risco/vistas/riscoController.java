@@ -271,33 +271,33 @@ public class riscoController implements Initializable {
 
     nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 
-    risco.setCellValueFactory(new PropertyValueFactory<>("p.get(0)"));
+    risco.setCellValueFactory(new PropertyValueFactory<>("p0"));
 
-    trece.setCellValueFactory(new PropertyValueFactory<>("p.get(1)"));
+    trece.setCellValueFactory(new PropertyValueFactory<>("p1"));
 
-    escMayor.setCellValueFactory(new PropertyValueFactory<>("p.get(2)"));
+    escMayor.setCellValueFactory(new PropertyValueFactory<>("p2"));
 
-    escMenor.setCellValueFactory(new PropertyValueFactory<>("p.get(3)"));
+    escMenor.setCellValueFactory(new PropertyValueFactory<>("p3"));
 
-    escPar.setCellValueFactory(new PropertyValueFactory<>("p.get(4)"));
+    escPar.setCellValueFactory(new PropertyValueFactory<>("p4"));
 
-    escImpar.setCellValueFactory(new PropertyValueFactory<>("p.get(5)"));
+    escImpar.setCellValueFactory(new PropertyValueFactory<>("p5"));
 
-    trio.setCellValueFactory(new PropertyValueFactory<>("p.get(6)"));
+    trio.setCellValueFactory(new PropertyValueFactory<>("p6"));
 
-    seis.setCellValueFactory(new PropertyValueFactory<>("p.get(7)"));
+    seis.setCellValueFactory(new PropertyValueFactory<>("p7"));
 
-    cinco.setCellValueFactory(new PropertyValueFactory<>("p.get(8)"));
+    cinco.setCellValueFactory(new PropertyValueFactory<>("p8"));
 
-    cuatro.setCellValueFactory(new PropertyValueFactory<>("p.get(9)"));
+    cuatro.setCellValueFactory(new PropertyValueFactory<>("p9"));
 
-    tres.setCellValueFactory(new PropertyValueFactory<>("p.get(10)"));
+    tres.setCellValueFactory(new PropertyValueFactory<>("p10"));
 
-    dos.setCellValueFactory(new PropertyValueFactory<>("p.get(11)"));
+    dos.setCellValueFactory(new PropertyValueFactory<>("p11"));
 
-    ases.setCellValueFactory(new PropertyValueFactory<>("p.get(12)"));
+    ases.setCellValueFactory(new PropertyValueFactory<>("p12"));
 
-    total.setCellValueFactory(new PropertyValueFactory<>("p.get(13)"));
+    total.setCellValueFactory(new PropertyValueFactory<>("p13"));
   }
 
   @FXML
@@ -513,13 +513,6 @@ public class riscoController implements Initializable {
     cambiarD3.setDisable(false);
     tirarD.setDisable(true);
     btnAceptar.setDisable(false); // Activo aceptar para jugar el turno
-  }
-
-  // para cerrar la pantalla
-  @FXML
-  private void cerrarPantalla(ActionEvent event) {
-    // Stage stage = (Stage) boton.getScene().getWindow();
-    // stage.close();
   }
 
   // salir
