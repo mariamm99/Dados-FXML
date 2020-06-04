@@ -675,9 +675,11 @@ public class riscoController implements Initializable {
 
     } else if (jugadorJugando >= numJugadores) {
       jugadorJugando = 1;
-      partida.setRonda();
-      if (partida.getRonda() > 13) {
+      
+      if (partida.getRonda() > 12) {
         alerta();
+      }else {
+        partida.setRonda();
       }
       System.out.println(partida.getRonda());
     } else {
@@ -735,21 +737,22 @@ public class riscoController implements Initializable {
     Alert alert = new Alert(AlertType.INFORMATION);
     alert.setTitle("Fin de la partida");
     alert.setHeaderText("Fin de la partida");
-    alert.setContentText("El ganador de la partida ha sido" + jugadorGanador());
+    alert.setContentText("El ganador de la partida ha sido: " + jugadorGanador());
     alert.showAndWait();
   }
 
   private String jugadorGanador() {
-    int pos = 10;
+   
+
     for (int i = 0; i < numJugadores; i++) {
-      if (pos != 1) {
-        pos = partida.posicion(player);
-
-      } else {
+      int pos = partida.posicion(player);
+      if (pos == 1) {
         return player.getNombre();
+      } else {
+        player = partida.jugadores.get(i);
       }
-      siguienteJug();
-
+      
+     
     }
     return null;
 
