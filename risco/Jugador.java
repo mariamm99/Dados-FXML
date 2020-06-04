@@ -51,6 +51,10 @@ public class Jugador {
     p.add(null); // 13 Para guardar el total
   }
 
+  /**
+   * getters para obtener los puntos de los jugadores, necesario para la tabla
+   * @return
+   */
   public Integer getP0() {
     return p.get(0);
   }
@@ -103,6 +107,10 @@ public class Jugador {
     return p.get(12);
   }
 
+  /**
+   * get de los puntos totales que lleva el jugador
+   * @return
+   */
   public Integer getP13() {
     return p.get(13);
   }
@@ -150,10 +158,18 @@ public class Jugador {
     this.dadosJugador = dadosJugador;
   }
   
+  /**
+   * Para cambiar el valor del dado pasado por parametro
+   * @param dado
+   */
   public void setDadoJugador(int dado) {
    dadosJugador.cambiarDado(dado);
   }
 
+  /**
+   * devuelve el arraylist completo
+   * @return
+   */
   public ArrayList<Integer> getP() {
     return p;
   }

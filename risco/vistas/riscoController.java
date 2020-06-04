@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -29,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -74,7 +76,7 @@ public class riscoController implements Initializable {
   // Button
   @FXML
   private Button btnSiguiente;
-  
+
   @FXML
   private Button btnAceptar;
 
@@ -145,7 +147,7 @@ public class riscoController implements Initializable {
 
   @FXML
   private TableColumn<Jugador, Integer> total;
-  
+
   // RADIO BUTTON
   @FXML
   private RadioButton rbRisco;
@@ -207,19 +209,19 @@ public class riscoController implements Initializable {
   int jugadorJugando = 0; // Número de jugador que está jugando en este momento
   boolean casillaOcupada; // Boolean que controla si la casilla estaba ocupada
   static Jugador player;
-  
+
   // Para guardar fichero
   private FileChooser fileSaver;
   private File ficheroGuardar;
   private BufferedWriter ficheroGuardador;
-  
+
   // Para cargar fichero
   private FileChooser fileChooser;
   private File fichero;
   private BufferedReader ficheroLeer;
   // Para método importa
   private static HistorialFX history;
-  
+
   public static HistorialFX getHistory() {
     return history;
   }
@@ -281,9 +283,12 @@ public class riscoController implements Initializable {
     });
   }
 
+  /**
+   * Para activar y desctivar los botones durante la partida
+   */
   public void botonComenzar() {
     if (casillaOcupada) {
-      
+
     } else {
       tirarD.setDisable(false);
     }
@@ -332,12 +337,18 @@ public class riscoController implements Initializable {
     total.setCellValueFactory(new PropertyValueFactory<>("p13"));
   }
 
+  /**
+   * Al pulsar el boton aceptar con un radio button seleccionado añade los puntos
+   * obtenidos al jugadores. El resultado de esta acción se muestra en el TextArea
+   * de la pantalla principal.
+   * 
+   * @param Event
+   */
   @FXML
   public void meterPuntos(ActionEvent Event) {
     int n;
     casillaOcupada = false;
 
-    
     if (rbRisco.isSelected()) {
       n = Partida.Risco(player);
       if (n == 0) {
@@ -460,12 +471,14 @@ public class riscoController implements Initializable {
       }
     }
     table.getItems().clear();
-    
+
     actualizarTabla();
     for (Jugador jug : partida.jugadores) {
       table.getItems().add(jug);
     }
-    
+
+    // si casilla está ocupada, realizamos eto para que el jugador no pierda el
+    // turno
     if (!casillaOcupada) {
       btnAceptar.setDisable(true);
     }
@@ -473,47 +486,64 @@ public class riscoController implements Initializable {
 
   }
 
+  /**
+   * Al pulsar para cambiar el dado 1
+   * 
+   * @param event
+   */
   @FXML
   void cambiarDado1(ActionEvent event) {
     player.setDadoJugador(1);
     tirarUnDado(1);
     cambiarD1.setDisable(true);
   }
-  
+
+  /**
+   * Al pulsar para cambiar el dado 2
+   * 
+   * @param event
+   */
   @FXML
   void cambiarDado2(ActionEvent event) {
     player.setDadoJugador(2);
     tirarUnDado(2);
     cambiarD2.setDisable(true);
   }
-  
+
+  /**
+   * Al pulsar para cambiar el dado 3
+   * 
+   * @param event
+   */
   @FXML
   void cambiarDado3(ActionEvent event) {
     player.setDadoJugador(3);
     tirarUnDado(3);
     cambiarD3.setDisable(true);
   }
-  
+
+  /**
+   * Función que se encarga de tirar los 3 dados y según el dado obtenido te
+   * muestra la imagen de ese dado
+   * 
+   * @param nDado
+   */
   void tirarUnDado(int nDado) {
     int d;
     ImageView img;
     Image file = null;
-    
+
     if (nDado == 1) {
       d = player.getDadosJugador().getD1();
-      System.out.println(player.getDadosJugador());
       img = imgDado1;
     } else if (nDado == 2) {
-      d =player.getDadosJugador().getD2();
-      System.out.println(player.getDadosJugador());
+      d = player.getDadosJugador().getD2();
       img = imgDado2;
     } else {
       d = player.getDadosJugador().getD3();
-      System.out.println(player.getDadosJugador());
       img = imgDado3;
     }
 
-    System.out.println(d);
     if (d == 1) {
       file = new Image(".\\risco\\dados\\Dado1.png");
     } else if (d == 2) {
@@ -528,10 +558,14 @@ public class riscoController implements Initializable {
       file = new Image(".\\risco\\dados\\Dado6.png");
     }
     img.setImage(file);
-    
+
   }
 
-  // primeros dados que se lanzan
+  /**
+   * Al pulsar el boton tirar dados, para lanzar los 3 dados
+   * 
+   * @param event
+   */
   @FXML
   void tirarDados(ActionEvent event) {
     for (int i = 1; i <= 3; i++) {
@@ -544,12 +578,21 @@ public class riscoController implements Initializable {
     btnAceptar.setDisable(false); // Activo aceptar para jugar el turno
   }
 
-  // salir
+  /**
+   * Metodo usado para cerrar la aplicación y terminar el juego
+   * 
+   * @param event
+   */
   @FXML
   void salir(ActionEvent event) {
     System.exit(0);
   }
 
+  /**
+   * Boton de ayuda
+   * 
+   * @param event
+   */
   @FXML
   void help(ActionEvent event) {
     Stage stageListar = new Stage();
@@ -565,14 +608,18 @@ public class riscoController implements Initializable {
     stageListar.show();
   }
 
+  /**
+   * Para exportar los datos de la partida
+   * 
+   * @param event
+   */
   @FXML
   public void exportar(ActionEvent event) {
     int pos = partida.posicion(player);
     try {
       fileSaver = new FileChooser();
       fileSaver.setInitialFileName("risco_" + player.getNombre() + ".txt");
-      fileSaver.getExtensionFilters().addAll(
-          new ExtensionFilter("Archivos de Texto", "*.txt"));
+      fileSaver.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
       ficheroGuardar = fileSaver.showSaveDialog(new Stage());
       ficheroGuardador = new BufferedWriter(new FileWriter(ficheroGuardar.getAbsolutePath()));
       ficheroGuardador.write(player.guardaDatosFX(numJugadores, pos));
@@ -583,21 +630,25 @@ public class riscoController implements Initializable {
     }
   }
 
+  /**
+   * Permite importar el historial de un jugador
+   * 
+   * @param event
+   * @throws IOException
+   */
   @FXML
   public void importa(ActionEvent event) throws IOException {
     try {
       fileChooser = new FileChooser();
-      fileChooser.getExtensionFilters().addAll(
-          new ExtensionFilter("Archivos de Texto", "*.txt"));
+      fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
       fichero = fileChooser.showOpenDialog(new Stage());
       ficheroLeer = new BufferedReader(new FileReader(fichero.getAbsolutePath()));
     } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    
+
     history = new HistorialFX(player, fichero);
-    
+
     Stage stage = new Stage();
 
     FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("Importacion.fxml"));
@@ -605,11 +656,11 @@ public class riscoController implements Initializable {
     stage.setScene(new Scene(root));
 
     stage.setTitle("Datos importados");
-    
+
     stage.show();
-    
+
     System.out.println(history);
-    
+
     ficheroLeer.close();
   }
 
@@ -619,23 +670,37 @@ public class riscoController implements Initializable {
    * al inicio de la partida.
    */
   public void siguienteJug() {
-    
+
     if (casillaOcupada) {
-      
+
     } else if (jugadorJugando >= numJugadores) {
       jugadorJugando = 1;
+      partida.setRonda();
+      if (partida.getRonda() > 13) {
+        alerta();
+      }
+      System.out.println(partida.getRonda());
     } else {
       jugadorJugando++;
     }
     player = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando)));
     String nombrejugador = partida.jugadores.get(partida.jugadores.indexOf(new Jugador(jugadorJugando))).getNombre();
     jugador.setText(nombrejugador);
-    for (int i = 1; i <4; i++) {
-      player.setDadoJugador(i);
+    if (!casillaOcupada) {
+      for (int i = 1; i < 4; i++) {
+        player.setDadoJugador(i);
+      }
     }
+
     btnSiguiente.setDisable(false);
   }
 
+  /**
+   * Método para mostrar información del menú cuando pulsas sobre el. Aparece en
+   * el TextArea de la pantalla princial.
+   * 
+   * @param event
+   */
   @FXML
   void menuTexto(Event event) {
     String id = ((Menu) event.getSource()).getId();
@@ -651,17 +716,48 @@ public class riscoController implements Initializable {
       resultado.setText("Muestra como es el juego");
     }
   }
-  
-  
 
+  /**
+   * Para limpiar el TextArea principal.
+   * 
+   * @param event
+   */
   @FXML
   void limpiarResultado(Event event) {
     resultado.setText("");
   }
 
+  /**
+   * Alerta que muestra quien es el ganador al terminar la partida
+   */
+  private void alerta() {
+
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setTitle("Fin de la partida");
+    alert.setHeaderText("Fin de la partida");
+    alert.setContentText("El ganador de la partida ha sido" + jugadorGanador());
+    alert.showAndWait();
+  }
+
+  private String jugadorGanador() {
+    int pos = 10;
+    for (int i = 0; i < numJugadores; i++) {
+      if (pos != 1) {
+        pos = partida.posicion(player);
+
+      } else {
+        return player.getNombre();
+      }
+      siguienteJug();
+
+    }
+    return null;
+
+  }
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
+
   }
 
 }

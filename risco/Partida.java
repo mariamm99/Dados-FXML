@@ -20,14 +20,13 @@ import java.util.ArrayList;
 public class Partida {
 
   // Atributos
-  private int ronda;
+  private int ronda=1;
   private int nJugadores;
 
   public ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 
   public Partida(int nJugadores) {
     this.nJugadores = nJugadores;
-    this.ronda = 1;
   }
 
   // Getters & Setters
@@ -35,8 +34,8 @@ public class Partida {
     return ronda;
   }
 
-  public void setRonda(int ronda) {
-    this.ronda = ronda;
+  public void setRonda() {
+    this.ronda++;
   }
 
   public int getnJugadores() {
@@ -204,7 +203,7 @@ public class Partida {
    * Método de comprobación: Escalera Menor.
    * 
    * @param player
-   * @return 1 si acierta, 0 si no acierta y 50 si la casilla está ocupada
+   * @return 1 si es escalera menor, 0 si no es y 50 si la casilla está ocupada
    */
   public static int EscaleraMenor(Jugador player) {
     boolean valord1 = false;

@@ -99,7 +99,7 @@
             <RadioButton fx:id="rbCuatro" layoutX="211.0" layoutY="188.0" mnemonicParsing="false" text="Cuatro" toggleGroup="$grupo" />
             <RadioButton fx:id="rbTres" layoutX="315.0" layoutY="188.0" mnemonicParsing="false" text="Tres" toggleGroup="$grupo" />
             <RadioButton fx:id="rbDos" layoutX="423.0" layoutY="188.0" mnemonicParsing="false" text="Dos" toggleGroup="$grupo" />
-            <RadioButton fx:id="rbAses" layoutX="512.0" layoutY="188.0" mnemonicParsing="false" text="Ases" toggleGroup="$grupo" />
+            <RadioButton fx:id="rbAses" layoutX="512.0" layoutY="188.0" mnemonicParsing="false" selected="true" text="Ases" toggleGroup="$grupo" />
             <Button fx:id="btnAceptar" disable="true" layoutX="627.0" layoutY="186.0" mnemonicParsing="false" onAction="#meterPuntos" text="Aceptar" />
             <Button fx:id="btnSiguiente" layoutX="592.0" layoutY="15.0" mnemonicParsing="false" onAction="#botonComenzar" text="Comenzar" />
             <Button fx:id="cambiarD1" disable="true" layoutX="172.0" layoutY="122.0" mnemonicParsing="false" onAction="#cambiarDado1" text="Cambiar dado 1" />
