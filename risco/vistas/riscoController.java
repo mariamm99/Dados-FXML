@@ -217,19 +217,12 @@ public class riscoController implements Initializable {
   private FileChooser fileChooser;
   private File fichero;
   private BufferedReader ficheroLeer;
-  // Historial
-  @FXML
-  private Label imNombre;
-  @FXML
-  private Label imHechas;
-  @FXML
-  private Label imMedia;
-  @FXML
-  private Label imPrimero;
-  @FXML
-  private Label imPuesto;
-  @FXML
-  private Button imcerrar;
+  // Para método importa
+  private static HistorialFX history;
+  
+  public static HistorialFX getHistory() {
+    return history;
+  }
 
   // Ventana donde aparecerán los textFields para indicar el nombre de los
   // jugadores
@@ -603,25 +596,15 @@ public class riscoController implements Initializable {
       e.printStackTrace();
     }
     
-    HistorialFX history = new HistorialFX(player, fichero);
+    history = new HistorialFX(player, fichero);
     
     Stage stage = new Stage();
-    stage.setTitle("Datos importados");
 
     FXMLLoader fxml = new FXMLLoader(this.getClass().getResource("Importacion.fxml"));
     Pane root = fxml.<Pane>load();
     stage.setScene(new Scene(root));
-    
-    /*
-    imNombre.setText(history.getNombreJugador());
-    imHechas.setText(Integer.toString(history.getNumeroPartidas()));
-    imMedia.setText(Double.toString(history.getMediaPuntos()));
-    imPrimero.setText(Integer.toString(history.getPartidasPrimero()));
-    imPuesto.setText(Double.toString(history.getPuestoMedio()));
-    
-    imcerrar.setOnAction(e -> {stage.close();});
-    
-    */
+
+    stage.setTitle("Datos importados");
     
     stage.show();
     
