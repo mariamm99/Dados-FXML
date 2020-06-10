@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -37,7 +38,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -244,6 +248,11 @@ public class riscoController implements Initializable {
     // DECLARAR PARTIDA TRAS VER EL NUMERO DE JUGADORES.
     partida = new Partida(numJugadores);
 
+    // Creo VBox
+    VBox vbnj = new VBox();
+    vbnj.setPadding(new Insets(20, 20, 20, 20));
+    
+    
     Stage stgnomJugadores = new Stage();
     stgnomJugadores.setTitle("Risco: Introduce el número de jugadores");
     stgnomJugadores.setAlwaysOnTop(true);
@@ -253,28 +262,29 @@ public class riscoController implements Initializable {
       TextField textF = new TextField("Jugador " + i);
       textfields.add(textF);
     }
+    
+    Label encabezadonj = new Label("Introduce el nombre de los jugadores: ");
+    encabezadonj.setAlignment(Pos.CENTER);
+    vbnj.getChildren().add(encabezadonj);
 
-    // creamos el pane
-    Pane panel = new Pane();
-    panel.getChildren().add(new Label("Introduce el nombre de los jugadores: "));
-
-    Button btnAc = new Button("Comenzar");
-    btnAc.relocate(0, 20);
-    panel.getChildren().add(btnAc);
-
-    int contador = 1;
     for (TextField tf : textfields) {
-      tf.relocate(0, 50 * contador);
-      panel.getChildren().add(tf);
-      contador++;
+      vbnj.getChildren().add(tf);
+      VBox.setMargin(tf, new Insets(10, 10, 10, 10));
     }
+    
+    // Botón
+    StackPane spbtn = new StackPane();
+    Button btnAc = new Button("Comenzar");
+    spbtn.getChildren().add(btnAc);
+    StackPane.setAlignment(btnAc, Pos.BOTTOM_CENTER);
+    StackPane.setMargin(btnAc, new Insets(20, 20, 20, 20));
+    vbnj.getChildren().add(spbtn);
 
-    panel.setPadding(new Insets(20, 20, 20, 20));
-
-    stgnomJugadores.setScene(new Scene(panel));
+    stgnomJugadores.setResizable(false);
+    stgnomJugadores.setScene(new Scene(vbnj));
     stgnomJugadores.show();
 
-    // creamos los jugadores cuando tenemos los nombres
+    // Cuando se pulse el botón, crear jugadores
     btnAc.setOnAction(actionEvent -> {
       int tmpCrearJugadores = 0;
       for (TextField tf : textfields) {
