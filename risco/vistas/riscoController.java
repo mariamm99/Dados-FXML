@@ -25,6 +25,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -192,9 +194,9 @@ public class riscoController implements Initializable {
   private RadioButton rbAses;
 
   // NumeroDeJugadores.fxml //////
-  // TextField
+  //spinner
   @FXML
-  private TextField nJugadores;
+  private Spinner<Integer> nJugadores;
   @FXML
   private Button aceptarNJugadores;
 
@@ -237,7 +239,7 @@ public class riscoController implements Initializable {
 
     List<TextField> textfields = new ArrayList<TextField>();
 
-    numJugadores = Integer.parseInt(nJugadores.getText());
+    numJugadores =nJugadores.getValue();
 
     // DECLARAR PARTIDA TRAS VER EL NUMERO DE JUGADORES.
     partida = new Partida(numJugadores);
@@ -761,6 +763,9 @@ public class riscoController implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
+    if (nJugadores!=null) {
+      nJugadores.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 30));
+    }
   }
 
 }
