@@ -642,7 +642,7 @@ public class riscoController implements Initializable {
 //      fileSaver.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
 //      ficheroGuardar = fileSaver.showSaveDialog(new Stage());
       
-      String ruta = "src\\risco\\dados\\" + player.getNombre() + ".txt";
+      String ruta = "src\\risco\\historial\\risco_" + player.getNombre() + ".txt";
       
       File file = new File(ruta);
       // Si el archivo no existe es creado
