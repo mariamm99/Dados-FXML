@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +39,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -103,6 +106,15 @@ public class riscoController implements Initializable {
   private ImageView imgDado2;
   @FXML
   private ImageView imgDado3;
+
+  @FXML
+  private MediaView vDado1;
+
+  @FXML
+  private MediaView vDado2;
+
+  @FXML
+  private MediaView vDado3;
 
   // Tabla
 
@@ -198,7 +210,7 @@ public class riscoController implements Initializable {
   private RadioButton rbAses;
 
   // NumeroDeJugadores.fxml //////
-  //spinner
+  // spinner
   @FXML
   private Spinner<Integer> nJugadores;
   @FXML
@@ -243,7 +255,7 @@ public class riscoController implements Initializable {
 
     List<TextField> textfields = new ArrayList<TextField>();
 
-    numJugadores =nJugadores.getValue();
+    numJugadores = nJugadores.getValue();
 
     // DECLARAR PARTIDA TRAS VER EL NUMERO DE JUGADORES.
     partida = new Partida(numJugadores);
@@ -251,8 +263,7 @@ public class riscoController implements Initializable {
     // Creo VBox
     VBox vbnj = new VBox();
     vbnj.setPadding(new Insets(20, 20, 20, 20));
-    
-    
+
     Stage stgnomJugadores = new Stage();
     stgnomJugadores.setTitle("Risco: Introduce el número de jugadores");
     stgnomJugadores.setAlwaysOnTop(true);
@@ -262,7 +273,7 @@ public class riscoController implements Initializable {
       TextField textF = new TextField("Jugador " + i);
       textfields.add(textF);
     }
-    
+
     Label encabezadonj = new Label("Introduce el nombre de los jugadores: ");
     encabezadonj.setAlignment(Pos.CENTER);
     vbnj.getChildren().add(encabezadonj);
@@ -271,7 +282,7 @@ public class riscoController implements Initializable {
       vbnj.getChildren().add(tf);
       VBox.setMargin(tf, new Insets(10, 10, 10, 10));
     }
-    
+
     // Botón
     StackPane spbtn = new StackPane();
     Button btnAc = new Button("Comenzar");
@@ -539,38 +550,66 @@ public class riscoController implements Initializable {
    * muestra la imagen de ese dado
    * 
    * @param nDado
+   * @throws MalformedURLException
    */
   void tirarUnDado(int nDado) {
     int d;
-    ImageView img;
-    Image file = null;
-
+    MediaView img;
+    String file = null;
+    System.out.println(nDado);
     if (nDado == 1) {
       d = player.getDadosJugador().getD1();
-      img = imgDado1;
+      img = vDado1;
     } else if (nDado == 2) {
       d = player.getDadosJugador().getD2();
-      img = imgDado2;
+      img = vDado2;
     } else {
       d = player.getDadosJugador().getD3();
-      img = imgDado3;
+      img = vDado3;
     }
 
     if (d == 1) {
-      file = new Image(".\\risco\\dados\\Dado1.png");
+//       file =new Media(".\\risco\\dados\\Dado1.mp4");
+      file = new File("src\\risco\\dados\\Dado1.mp4").getAbsolutePath();
+//      file = new Image(".\\risco\\dados\\Dado1.gif");
     } else if (d == 2) {
-      file = new Image(".\\risco\\dados\\Dado2.png");
-    } else if (d == 3) {
-      file = new Image(".\\risco\\dados\\Dado3.png");
-    } else if (d == 4) {
-      file = new Image(".\\risco\\dados\\Dado4.png");
-    } else if (d == 5) {
-      file = new Image(".\\risco\\dados\\Dado5.png");
-    } else if (d == 6) {
-      file = new Image(".\\risco\\dados\\Dado6.png");
-    }
-    img.setImage(file);
+//      file = new Image(".\\risco\\dados\\Dado2.gif");
+//      file = new Image(".\\risco\\dados\\Dado2.png");
+//      file = new Media(".\\risco\\dados\\Dado1.mp4");
+      file = new File("src\\risco\\dados\\Dado2.mp4").getAbsolutePath();
 
+    } else if (d == 3) {
+//      file = new Image(".\\risco\\dados\\Dado3.gif");
+//      file = new Image(".\\risco\\dados\\Dado3.png");
+//    imagenSource=".\\risco\\dados\\Dado3.gif";
+//      file =new Media(".\\risco\\dados\\Dado1.mp4");
+      file = new File("src\\risco\\dados\\Dado3.mp4").getAbsolutePath();
+
+    } else if (d == 4) {
+//      file = new Image(".\\risco\\dados\\Dado4.gif");
+//      file = new Image(".\\risco\\dados\\Dado4.png");
+//      imagenSource= ".\\risco\\dados\\Dado4.gif";
+//      file =new Media(".\\risco\\dados\\Dado1.mp4");
+      file = new File("src\\risco\\dados\\Dado4.mp4").getAbsolutePath();
+
+    } else if (d == 5) {
+//      file = new Image(".\\risco\\dados\\Dado5.png");
+//      imagenSource= ".\\risco\\dados\\Dado4.gif";
+//      file = new Media(".\\risco\\dados\\Dado1.mp4");
+      file = new File("src\\risco\\dados\\Dado5.mp4").getAbsolutePath();
+
+    } else if (d == 6) {
+//      file = new Image(".\\risco\\dados\\Dado6.png");
+//      imagenSource= ".\\risco\\dados\\Dado4.gif";
+//      file =new  Media(".\\risco\\dados\\Dado1.mp4");
+      file = new File("src\\risco\\dados\\Dado6.mp4").getAbsolutePath();
+
+    }
+    Media media = new Media(new File(file).toURI().toString());
+
+    MediaPlayer mediaPlayer = new MediaPlayer(media);
+    img.setMediaPlayer(mediaPlayer);
+    mediaPlayer.setAutoPlay(true);
   }
 
   /**
@@ -637,7 +676,6 @@ public class riscoController implements Initializable {
       ficheroGuardador.write(player.guardaDatosFX(numJugadores, pos));
       ficheroGuardador.close();
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
@@ -687,10 +725,10 @@ public class riscoController implements Initializable {
 
     } else if (jugadorJugando >= numJugadores) {
       jugadorJugando = 1;
-      
+
       if (partida.getRonda() > 12) {
         alerta();
-      }else {
+      } else {
         partida.setRonda();
       }
       System.out.println(partida.getRonda());
@@ -754,7 +792,6 @@ public class riscoController implements Initializable {
   }
 
   private String jugadorGanador() {
-   
 
     for (int i = 0; i < numJugadores; i++) {
       int pos = partida.posicion(player);
@@ -763,8 +800,7 @@ public class riscoController implements Initializable {
       } else {
         player = partida.jugadores.get(i);
       }
-      
-     
+
     }
     return null;
 
@@ -773,7 +809,7 @@ public class riscoController implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
-    if (nJugadores!=null) {
+    if (nJugadores != null) {
       nJugadores.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 30));
     }
   }
