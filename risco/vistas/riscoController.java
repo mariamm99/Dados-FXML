@@ -36,7 +36,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -99,20 +98,12 @@ public class riscoController implements Initializable {
   @FXML
   private Button cambiarD3;
 
-  // ImageView
-  @FXML
-  private ImageView imgDado1;
-  @FXML
-  private ImageView imgDado2;
-  @FXML
-  private ImageView imgDado3;
+  // MediaView
 
   @FXML
   private MediaView vDado1;
-
   @FXML
   private MediaView vDado2;
-
   @FXML
   private MediaView vDado3;
 
@@ -556,7 +547,6 @@ public class riscoController implements Initializable {
     int d;
     MediaView img;
     String file = null;
-    System.out.println(nDado);
     if (nDado == 1) {
       d = player.getDadosJugador().getD1();
       img = vDado1;
@@ -569,39 +559,18 @@ public class riscoController implements Initializable {
     }
 
     if (d == 1) {
-//       file =new Media(".\\risco\\dados\\Dado1.mp4");
       file = new File("src\\risco\\dados\\Dado1.mp4").getAbsolutePath();
-//      file = new Image(".\\risco\\dados\\Dado1.gif");
     } else if (d == 2) {
-//      file = new Image(".\\risco\\dados\\Dado2.gif");
-//      file = new Image(".\\risco\\dados\\Dado2.png");
-//      file = new Media(".\\risco\\dados\\Dado1.mp4");
       file = new File("src\\risco\\dados\\Dado2.mp4").getAbsolutePath();
-
     } else if (d == 3) {
-//      file = new Image(".\\risco\\dados\\Dado3.gif");
-//      file = new Image(".\\risco\\dados\\Dado3.png");
-//    imagenSource=".\\risco\\dados\\Dado3.gif";
-//      file =new Media(".\\risco\\dados\\Dado1.mp4");
       file = new File("src\\risco\\dados\\Dado3.mp4").getAbsolutePath();
-
     } else if (d == 4) {
-//      file = new Image(".\\risco\\dados\\Dado4.gif");
-//      file = new Image(".\\risco\\dados\\Dado4.png");
-//      imagenSource= ".\\risco\\dados\\Dado4.gif";
-//      file =new Media(".\\risco\\dados\\Dado1.mp4");
       file = new File("src\\risco\\dados\\Dado4.mp4").getAbsolutePath();
 
     } else if (d == 5) {
-//      file = new Image(".\\risco\\dados\\Dado5.png");
-//      imagenSource= ".\\risco\\dados\\Dado4.gif";
-//      file = new Media(".\\risco\\dados\\Dado1.mp4");
       file = new File("src\\risco\\dados\\Dado5.mp4").getAbsolutePath();
 
     } else if (d == 6) {
-//      file = new Image(".\\risco\\dados\\Dado6.png");
-//      imagenSource= ".\\risco\\dados\\Dado4.gif";
-//      file =new  Media(".\\risco\\dados\\Dado1.mp4");
       file = new File("src\\risco\\dados\\Dado6.mp4").getAbsolutePath();
 
     }
@@ -668,13 +637,30 @@ public class riscoController implements Initializable {
   public void exportar(ActionEvent event) {
     int pos = partida.posicion(player);
     try {
-      fileSaver = new FileChooser();
-      fileSaver.setInitialFileName("risco_" + player.getNombre() + ".txt");
-      fileSaver.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
-      ficheroGuardar = fileSaver.showSaveDialog(new Stage());
-      ficheroGuardador = new BufferedWriter(new FileWriter(ficheroGuardar.getAbsolutePath()));
+//      fileSaver = new FileChooser();
+//      fileSaver.setInitialFileName("risco_" + player.getNombre() + ".txt");
+//      fileSaver.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
+//      ficheroGuardar = fileSaver.showSaveDialog(new Stage());
+      
+      String ruta = "src\\risco\\dados\\" + player.getNombre() + ".txt";
+      
+      File file = new File(ruta);
+      // Si el archivo no existe es creado
+      if (!file.exists()) {
+          file.createNewFile();
+          System.out.println("creado");
+      }
+   
+      System.out.println(file.getAbsolutePath());
+      ficheroGuardador = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
       ficheroGuardador.write(player.guardaDatosFX(numJugadores, pos));
       ficheroGuardador.close();
+     
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("Datos Exportados");
+      alert.setHeaderText("Datos exportados");
+      alert.showAndWait();
+      
     } catch (IOException e) {
       e.printStackTrace();
     }
