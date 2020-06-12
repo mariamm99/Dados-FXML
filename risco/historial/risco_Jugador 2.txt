@@ -1,0 +1,1 @@
+Fecha: 12/06/2020 ; Risco: 0 ; Trece:  0 ; E.Mayor: 0 ; E.Menor: 0 ; E.Par: 0 ; E.Impar: 0 ; Trio: 0 ; Seis: 12 ; Cinco: 0 ; Cuatro: 0 ; Tres: 6 ; Dos: 2 ; As: 1 ; Total: 21 ; Número jugadores: 2 ; Puesto: 1

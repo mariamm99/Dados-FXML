@@ -553,19 +553,19 @@ public class riscoController implements Initializable {
     }
 
     if (d == 1) {
-      file = new File("risco\\dados\\Dado1.mp4").getAbsolutePath();
+      file = new File("src\\risco\\dados\\Dado1.mp4").getAbsolutePath();
     } else if (d == 2) {
-      file = new File("risco\\dados\\Dado2.mp4").getAbsolutePath();
+      file = new File("src\\risco\\dados\\Dado2.mp4").getAbsolutePath();
     } else if (d == 3) {
-      file = new File("risco\\dados\\Dado3.mp4").getAbsolutePath();
+      file = new File("src\\risco\\dados\\Dado3.mp4").getAbsolutePath();
     } else if (d == 4) {
-      file = new File("risco\\dados\\Dado4.mp4").getAbsolutePath();
+      file = new File("src\\risco\\dados\\Dado4.mp4").getAbsolutePath();
 
     } else if (d == 5) {
-      file = new File("risco\\dados\\Dado5.mp4").getAbsolutePath();
+      file = new File("src\\risco\\dados\\Dado5.mp4").getAbsolutePath();
 
     } else if (d == 6) {
-      file = new File("risco\\dados\\Dado6.mp4").getAbsolutePath();
+      file = new File("src\\risco\\dados\\Dado6.mp4").getAbsolutePath();
 
     }
     Media media = new Media(new File(file).toURI().toString());
@@ -628,7 +628,7 @@ public class riscoController implements Initializable {
    * @param event
    */
   @FXML
-  public void exportar(ActionEvent event) {
+  public void exportar() {
     int pos = partida.posicion(player);
     try {
 //      fileSaver = new FileChooser();
@@ -636,7 +636,7 @@ public class riscoController implements Initializable {
 //      fileSaver.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
 //      ficheroGuardar = fileSaver.showSaveDialog(new Stage());
       
-      String ruta = "risco\\historial\\risco_" + player.getNombre() + ".txt";
+      String ruta = "src\\risco\\historial\\risco_" + player.getNombre() + ".txt";
       
       File file = new File(ruta);
       // Si el archivo no existe es creado
@@ -671,7 +671,7 @@ public class riscoController implements Initializable {
     try {
       // fileChooser = new FileChooser();
       // fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
-      fichero = new File("risco\\historial\\risco_" + player.getNombre() + ".txt");
+      fichero = new File("src\\risco\\historial\\risco_" + player.getNombre() + ".txt");
       ficheroLeer = new BufferedReader(new FileReader(fichero));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
@@ -708,10 +708,11 @@ public class riscoController implements Initializable {
 
       if (partida.getRonda() > 12) {
         alerta();
+        exportarFinPartida();
       } else {
         partida.setRonda();
       }
-      System.out.println(partida.getRonda());
+      
     } else {
       jugadorJugando++;
     }
@@ -725,6 +726,16 @@ public class riscoController implements Initializable {
     }
 
     btnSiguiente.setDisable(false);
+  }
+
+  private void exportarFinPartida() {
+    
+    for (int i = 0; i < numJugadores; i++) {
+      player = partida.jugadores.get(i);
+      exportar();
+      
+    }  
+    
   }
 
   /**
