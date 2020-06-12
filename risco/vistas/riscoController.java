@@ -688,9 +688,6 @@ public class riscoController implements Initializable {
     stage.setTitle("Datos importados");
 
     stage.show();
-
-    System.out.println(history);
-
     ficheroLeer.close();
   }
 
