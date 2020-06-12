@@ -36,7 +36,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -44,8 +43,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import risco.HistorialFX;
 import risco.Jugador;
@@ -60,7 +57,7 @@ public class riscoController implements Initializable {
   @FXML
   private MenuItem exportar;
   @FXML
-  private MenuItem importar;
+  private MenuItem verHistorialBtn;
   @FXML
   private MenuItem ayuda;
   @FXML
@@ -220,12 +217,9 @@ public class riscoController implements Initializable {
   static Jugador player;
 
   // Para guardar fichero
-  private FileChooser fileSaver;
-  private File ficheroGuardar;
   private BufferedWriter ficheroGuardador;
 
   // Para cargar fichero
-  private FileChooser fileChooser;
   private File fichero;
   private BufferedReader ficheroLeer;
   // Para método importa
@@ -559,19 +553,19 @@ public class riscoController implements Initializable {
     }
 
     if (d == 1) {
-      file = new File("src\\risco\\dados\\Dado1.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado1.mp4").getAbsolutePath();
     } else if (d == 2) {
-      file = new File("src\\risco\\dados\\Dado2.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado2.mp4").getAbsolutePath();
     } else if (d == 3) {
-      file = new File("src\\risco\\dados\\Dado3.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado3.mp4").getAbsolutePath();
     } else if (d == 4) {
-      file = new File("src\\risco\\dados\\Dado4.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado4.mp4").getAbsolutePath();
 
     } else if (d == 5) {
-      file = new File("src\\risco\\dados\\Dado5.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado5.mp4").getAbsolutePath();
 
     } else if (d == 6) {
-      file = new File("src\\risco\\dados\\Dado6.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado6.mp4").getAbsolutePath();
 
     }
     Media media = new Media(new File(file).toURI().toString());
@@ -642,7 +636,7 @@ public class riscoController implements Initializable {
 //      fileSaver.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
 //      ficheroGuardar = fileSaver.showSaveDialog(new Stage());
       
-      String ruta = "src\\risco\\historial\\risco_" + player.getNombre() + ".txt";
+      String ruta = "risco\\historial\\risco_" + player.getNombre() + ".txt";
       
       File file = new File(ruta);
       // Si el archivo no existe es creado
@@ -652,7 +646,7 @@ public class riscoController implements Initializable {
       }
    
       System.out.println(file.getAbsolutePath());
-      ficheroGuardador = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
+      ficheroGuardador = new BufferedWriter(new FileWriter(file.getAbsolutePath(), true));
       ficheroGuardador.write(player.guardaDatosFX(numJugadores, pos));
       ficheroGuardador.close();
      
@@ -673,12 +667,12 @@ public class riscoController implements Initializable {
    * @throws IOException
    */
   @FXML
-  public void importa(ActionEvent event) throws IOException {
+  public void verHistorialJug(ActionEvent event) throws IOException {
     try {
-      fileChooser = new FileChooser();
-      fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
-      fichero = fileChooser.showOpenDialog(new Stage());
-      ficheroLeer = new BufferedReader(new FileReader(fichero.getAbsolutePath()));
+      // fileChooser = new FileChooser();
+      // fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
+      fichero = new File("risco\\historial\\risco_" + player.getNombre() + ".txt");
+      ficheroLeer = new BufferedReader(new FileReader(fichero));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }

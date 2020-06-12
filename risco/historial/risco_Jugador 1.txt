@@ -1,1 +1,3 @@
 Fecha: 11/06/2020 ; Risco: 	 ; Trece:  	 ; E.Mayor: 	 ; E.Menor: 	 ; E.Par: 	 ; E.Impar: 	 ; Trio: 	 ; Seis: 	 ; Cinco: 	 ; Cuatro: 8 ; Tres: 	 ; Dos: 	 ; As: 	 ; Total: 8 ; Número jugadores: 1 ; Puesto: 1
+Fecha: 12/06/2020 ; Risco: 	 ; Trece:  	 ; E.Mayor: 	 ; E.Menor: 	 ; E.Par: 	 ; E.Impar: 	 ; Trio: 	 ; Seis: 12 ; Cinco: 	 ; Cuatro: 	 ; Tres: 	 ; Dos: 0 ; As: 	 ; Total: 12 ; Número jugadores: 3 ; Puesto: 1
+Fecha: 12/06/2020 ; Risco: 	 ; Trece:  	 ; E.Mayor: 	 ; E.Menor: 	 ; E.Par: 	 ; E.Impar: 	 ; Trio: 	 ; Seis: 	 ; Cinco: 	 ; Cuatro: 8 ; Tres: 	 ; Dos: 	 ; As: 	 ; Total: 8 ; Número jugadores: 2 ; Puesto: 1

@@ -1,1 +1,0 @@
-Fecha: 11/06/2020 ; Risco: 	 ; Trece:  	 ; E.Mayor: 	 ; E.Menor: 	 ; E.Par: 	 ; E.Impar: 	 ; Trio: 	 ; Seis: 	 ; Cinco: 10 ; Cuatro: 	 ; Tres: 	 ; Dos: 	 ; As: 	 ; Total: 10 ; Número jugadores: 1 ; Puesto: 1

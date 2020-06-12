@@ -27,7 +27,7 @@
                         <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem fx:id="importar" mnemonicParsing="false" onAction="#importa" text="Importar">
+                  <MenuItem fx:id="verHistorialBtn" mnemonicParsing="false" onAction="#verHistorialJug" text="Ver historial">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
