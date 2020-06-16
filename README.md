@@ -8,15 +8,7 @@
 El Risco es un juego de dados en el que tiras tres dados y puedes decidir a que categoría jugar (por ejemplo, escalera mayor, escalera impar, trío, etc.) Hay 13 rondas (una por cada categoría) y gana el jugador que mas puntos consigue.
 
 # Ejecución 🖥️
-Para ejecutar el juego simplemente debes bajar este repositorio, compilar Main y ejecutarlo mínimo con Java 8. Recuerda que también necesitas JavaFX.
-
-```bash
-git clone https://github.com/mariamm99/Dados-FXML && cd risco
-
-javac Main.java
-
-java Main
-```
+Para ejecutar el juego simplemente debes bajar este repositorio, ejecutar dados.jar y hacerlo mínimo con Java 8. Recuerda que también necesitas JavaFX para que funcione.
 
 # Autores 👥
 + María Moreno (@mariamm99)
