@@ -553,19 +553,19 @@ public class riscoController implements Initializable {
     }
 
     if (d == 1) {
-      file = new File("src\\risco\\dados\\Dado1.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado1.mp4").getAbsolutePath();
     } else if (d == 2) {
-      file = new File("src\\risco\\dados\\Dado2.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado2.mp4").getAbsolutePath();
     } else if (d == 3) {
-      file = new File("src\\risco\\dados\\Dado3.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado3.mp4").getAbsolutePath();
     } else if (d == 4) {
-      file = new File("src\\risco\\dados\\Dado4.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado4.mp4").getAbsolutePath();
 
     } else if (d == 5) {
-      file = new File("src\\risco\\dados\\Dado5.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado5.mp4").getAbsolutePath();
 
     } else if (d == 6) {
-      file = new File("src\\risco\\dados\\Dado6.mp4").getAbsolutePath();
+      file = new File("risco\\dados\\Dado6.mp4").getAbsolutePath();
 
     }
     Media media = new Media(new File(file).toURI().toString());
@@ -629,34 +629,38 @@ public class riscoController implements Initializable {
    */
   @FXML
   public void exportar() {
-    int pos = partida.posicion(player);
+   
     try {
-//      fileSaver = new FileChooser();
-//      fileSaver.setInitialFileName("risco_" + player.getNombre() + ".txt");
-//      fileSaver.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
-//      ficheroGuardar = fileSaver.showSaveDialog(new Stage());
-      
-      String ruta = "src\\risco\\historial\\risco_" + player.getNombre() + ".txt";
-      
+      int pos = partida.posicion(player);
+
+      String ruta = "risco\\historial\\risco_" + player.getNombre() + ".txt";
+
       File file = new File(ruta);
       // Si el archivo no existe es creado
       if (!file.exists()) {
-          file.createNewFile();
-          System.out.println("creado");
+        file.createNewFile();
+        System.out.println("creado");
       }
-   
+
+     
+      
       System.out.println(file.getAbsolutePath());
       ficheroGuardador = new BufferedWriter(new FileWriter(file.getAbsolutePath(), true));
       ficheroGuardador.write(player.guardaDatosFX(numJugadores, pos));
       ficheroGuardador.close();
-     
+
       Alert alert = new Alert(AlertType.INFORMATION);
       alert.setTitle("Datos Exportados");
       alert.setHeaderText("Datos exportados");
       alert.showAndWait();
-      
+
     } catch (IOException e) {
       e.printStackTrace();
+    }catch (NullPointerException e) {
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("no has iniciado la partida");
+      alert.setHeaderText("no puede ser exportada una partida vacia");
+      alert.showAndWait();
     }
   }
 
@@ -670,8 +674,9 @@ public class riscoController implements Initializable {
   public void verHistorialJug(ActionEvent event) throws IOException {
     try {
       // fileChooser = new FileChooser();
-      // fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos de Texto", "*.txt"));
-      fichero = new File("src\\risco\\historial\\risco_" + player.getNombre() + ".txt");
+      // fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Archivos de
+      // Texto", "*.txt"));
+      fichero = new File("risco\\historial\\risco_" + player.getNombre() + ".txt");
       ficheroLeer = new BufferedReader(new FileReader(fichero));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
@@ -704,12 +709,17 @@ public class riscoController implements Initializable {
       jugadorJugando = 1;
 
       if (partida.getRonda() > 12) {
+        /**
+         * al terminar la ultima ronda, avisa de que la partida ha terminado y exporta
+         * los datos de la partida en el historial de cada jugador
+         */
+
         alerta();
         exportarFinPartida();
       } else {
         partida.setRonda();
       }
-      
+
     } else {
       jugadorJugando++;
     }
@@ -725,14 +735,17 @@ public class riscoController implements Initializable {
     btnSiguiente.setDisable(false);
   }
 
+  /**
+   * Al terminar la paritida guarda los datos de cada jugador en su historial
+   */
   private void exportarFinPartida() {
-    
+
     for (int i = 0; i < numJugadores; i++) {
       player = partida.jugadores.get(i);
       exportar();
-      
-    }  
-    
+
+    }
+
   }
 
   /**

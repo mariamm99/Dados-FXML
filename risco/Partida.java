@@ -393,7 +393,7 @@ public class Partida {
    * @param player
    * @return posición del jugador
    */
-  public int posicion(Jugador player) {
+  public int posicion(Jugador player) throws NullPointerException {
     int pos = 1;
     int puntos = player.p.get(13);
 
